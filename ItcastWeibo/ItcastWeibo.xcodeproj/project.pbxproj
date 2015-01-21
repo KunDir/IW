@@ -41,6 +41,7 @@
 		BC3FAD501A68F07D0060B965 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC3FAD4F1A68F07D0060B965 /* Images.xcassets */; };
 		BC3FAD5F1A68F07D0060B965 /* ItcastWeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3FAD5E1A68F07D0060B965 /* ItcastWeiboTests.m */; };
 		BC4D14871A6BD93B001A3F83 /* UIBarButtonItem+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4D14861A6BD93B001A3F83 /* UIBarButtonItem+IW.m */; };
+		BC5094511A6F9BDD005D2BA2 /* IWStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5094501A6F9BDD005D2BA2 /* IWStatusFrame.m */; };
 		BC5122A31A6F34410006F39A /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5122911A6F34410006F39A /* MJArgument.m */; };
 		BC5122A41A6F34410006F39A /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5122941A6F34410006F39A /* MJIvar.m */; };
 		BC5122A51A6F34410006F39A /* MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5122961A6F34410006F39A /* MJMember.m */; };
@@ -153,6 +154,8 @@
 		BC3FAD5E1A68F07D0060B965 /* ItcastWeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItcastWeiboTests.m; sourceTree = "<group>"; };
 		BC4D14851A6BD93B001A3F83 /* UIBarButtonItem+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+IW.h"; sourceTree = "<group>"; };
 		BC4D14861A6BD93B001A3F83 /* UIBarButtonItem+IW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+IW.m"; sourceTree = "<group>"; };
+		BC50944F1A6F9BDD005D2BA2 /* IWStatusFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusFrame.h; sourceTree = "<group>"; };
+		BC5094501A6F9BDD005D2BA2 /* IWStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusFrame.m; sourceTree = "<group>"; };
 		BC5122901A6F34410006F39A /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
 		BC5122911A6F34410006F39A /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
 		BC5122921A6F34410006F39A /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				BC25B0251A6E4BD800510CC0 /* IWStatus.m */,
 				BC25B0271A6E4DBA00510CC0 /* IWUser.h */,
 				BC25B0281A6E4DBA00510CC0 /* IWUser.m */,
+				BC50944F1A6F9BDD005D2BA2 /* IWStatusFrame.h */,
+				BC5094501A6F9BDD005D2BA2 /* IWStatusFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -808,6 +813,7 @@
 				BC5122A31A6F34410006F39A /* MJArgument.m in Sources */,
 				BC6CEAFF1A69F75A00BDAEBB /* IWTabBar.m in Sources */,
 				BC25AF911A6E0F5500510CC0 /* MBProgressHUD+MJ.m in Sources */,
+				BC5094511A6F9BDD005D2BA2 /* IWStatusFrame.m in Sources */,
 				BC5122A41A6F34410006F39A /* MJIvar.m in Sources */,
 				BC4D14871A6BD93B001A3F83 /* UIBarButtonItem+IW.m in Sources */,
 				BCF475EF1A6D1F0E0007059E /* AFSecurityPolicy.m in Sources */,

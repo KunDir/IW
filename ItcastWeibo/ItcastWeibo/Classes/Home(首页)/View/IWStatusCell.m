@@ -8,6 +8,11 @@
 
 #import "IWStatusCell.h"
 
+#import "IWStatusFrame.h"
+#import "IWStatus.h"
+#import "IWUser.h"
+#import "UIImageView+WebCache.h"
+
 @interface IWStatusCell ()
 
 // 顶部的view
@@ -85,21 +90,26 @@
     
     // 5.昵称
     UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.font = IWStatusNameFont;
     [self.topView addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
     // 6.时间
     UILabel *timeLabel = [[UILabel alloc] init];
+    timeLabel.font = IWStatusTimeFont;
     [self.topView addSubview:timeLabel];
     self.timeLabel = timeLabel;
 
     // 7.来源
     UILabel *sourceLabel = [[UILabel alloc] init];
+    sourceLabel.font = IWStatusSourceFont;
     [self.topView addSubview:sourceLabel];
     self.sourceLabel = sourceLabel;
 
     // 8.正文\内容
     UILabel *contentLabel = [[UILabel alloc] init];
+    contentLabel.numberOfLines = 0;
+    contentLabel.font = IWStatusContentFont;
     [self.topView addSubview:contentLabel];
     self.contentLabel = contentLabel;
 
@@ -150,6 +160,77 @@
         
     }
     return self;
+}
+
+// 设置传递过来的模型数据
+- (void)setStatusFrame:(IWStatusFrame *)statusFrame
+{
+    _statusFrame = statusFrame;
+    
+    // 1.原创微博
+    [self setupOriginalData];
+    
+    // 2.被转发微博
+    [self setupRetweetData];
+}
+
+// 原创微博
+- (void)setupOriginalData
+{
+    IWStatus *status = self.statusFrame.status;
+    IWUser *user = status.user;
+    
+    // 1.topView;
+    self.topView.frame = self.statusFrame.topViewF;
+    
+    // 2.头像
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    self.iconView.frame = self.statusFrame.iconViewF;
+    
+    // 3.昵称
+    self.nameLabel.text = user.name;
+    self.nameLabel.frame = self.statusFrame.nameLabelF;
+    
+    // 4.vip
+    if(user.vip)
+    {
+        self.vipView.hidden = NO;
+        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
+        self.vipView.frame = self.statusFrame.vipViewF;
+    }
+    else
+    {
+        self.vipView.hidden = YES;
+    }
+    
+    // 5.时间
+    self.timeLabel.text = status.created_at;
+    self.timeLabel.frame = self.statusFrame.timeLabelF;
+    
+    // 6.来源
+    self.sourceLabel.text = status.source;
+    self.sourceLabel.frame = self.statusFrame.sourceLabelF;
+    
+    // 7.正文
+    self.contentLabel.text = status.text;
+    self.contentLabel.frame = self.statusFrame.contentLabelF;
+}
+
+// 被转发微博
+- (void)setupRetweetData
+{
+    
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"status";
+    IWStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell == nil)
+    {
+        cell = [[IWStatusCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    return cell;
 }
 
 @end

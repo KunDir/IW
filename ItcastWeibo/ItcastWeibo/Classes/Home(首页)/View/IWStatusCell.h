@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class IWStatusFrame;
 @interface IWStatusCell : UITableViewCell
-
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@property (nonatomic, strong) IWStatusFrame *statusFrame;
 @end
