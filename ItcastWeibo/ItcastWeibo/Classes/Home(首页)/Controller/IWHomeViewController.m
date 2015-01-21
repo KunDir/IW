@@ -19,13 +19,15 @@
 #import "IWStatus.h"
 #import "IWUser.h"
 #import "MJExtension.h"
+#import "IWStatusFrame.h"
+#import "IWStatusCell.h"
 
 #define NavigationbarArrowDown 0
 #define NavigationBarArrowUp 1
 
 @interface IWHomeViewController ()
 
-@property (nonatomic, strong) NSArray *statuses;
+@property (nonatomic, strong) NSArray *statusesFrames;
 
 @end
 
@@ -55,11 +57,22 @@
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // 取出所有的微博数据（每一条微博都是一个字典）
-        NSArray *dictArray = responseObject[@"statuses"];
         
-        // 将字典数据转为模型数据
-        // 利用框架把微博数据封装
-        self.statuses = [IWStatus objectArrayWithKeyValuesArray:dictArray];
+        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
+        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        // 创建Frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for(IWStatus *status in statusArray)
+        {
+            IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
+            // 传递微博模型数据
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        
+        // 赋值
+        self.statusesFrames = statusFrameArray;
         
         // 刷新表格
         [self.tableView reloadData];
@@ -132,40 +145,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.statuses.count;
+    return self.statusesFrames.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 创建cell
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
+    IWStatusCell *cell = [IWStatusCell cellWithTableView:tableView];
     
-    // 设置cell的数据
-    // 微博的文字（内容）
-    IWStatus *status = self.statuses[indexPath.row];
-    cell.textLabel.text = status.text;
-    
-    // 微博作者的昵称
-    IWUser *user = status.user;
-    cell.detailTextLabel.text = user.name;
-    
-    // 微博作者的头像
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"tabbar_compose_button"]]; // 占位图片 本地有缓存
+    // 传递frame模型
+    cell.statusFrame = self.statusesFrames[indexPath.row];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - 代理方法
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view.backgroundColor = [UIColor redColor];
-    [self.navigationController pushViewController:vc animated:YES];
+    IWStatusFrame *statuesFrame = self.statusesFrames[indexPath.row];
+    return statuesFrame.cellHeight;
 }
-
 
 @end
