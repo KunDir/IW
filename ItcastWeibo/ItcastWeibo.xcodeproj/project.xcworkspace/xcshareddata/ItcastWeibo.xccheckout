@@ -12,6 +12,8 @@
 	<dict>
 		<key>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</key>
 		<string>http://192.168.1.163:81/svn/IW/trunk/ItcastWeibo</string>
+		<key>C2658D881A1A2D7C370BB88BAC0CC62377820E3D</key>
+		<string>https://github.com/KunDir/IW.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ItcastWeibo.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</key>
 		<string>../..</string>
+		<key>C2658D881A1A2D7C370BB88BAC0CC62377820E3D</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
@@ -33,6 +37,14 @@
 	<string>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C2658D881A1A2D7C370BB88BAC0CC62377820E3D</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>

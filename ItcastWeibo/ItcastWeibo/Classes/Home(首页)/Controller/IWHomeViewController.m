@@ -58,6 +58,7 @@
         NSArray *dictArray = responseObject[@"statuses"];
         
         // 将字典数据转为模型数据
+        // 利用框架把微博数据封装
         self.statuses = [IWStatus objectArrayWithKeyValuesArray:dictArray];
         
         // 刷新表格
