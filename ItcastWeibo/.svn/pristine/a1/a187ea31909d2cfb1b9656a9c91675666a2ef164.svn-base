@@ -1,0 +1,30 @@
+//
+//  IWUser.m
+//  ItcastWeibo
+//
+//  Created by kun on 15/1/20.
+//  Copyright (c) 2015年 kun. All rights reserved.
+//
+
+#import "IWUser.h"
+
+@implementation IWUser
+
+- (instancetype)initWithDict:(NSDictionary *)dict
+{
+    self = [super init];
+    if(self)
+    {
+        self.idstr = dict[@"idstr"];
+        self.name = dict[@"name"];
+        self.profile_image_url = dict[@"profile_image_url"];
+    }
+    return self;
+}
+
++ (instancetype)userWithDict:(NSDictionary *)dict
+{
+    return [[self alloc] initWithDict:dict];
+}
+
+@end

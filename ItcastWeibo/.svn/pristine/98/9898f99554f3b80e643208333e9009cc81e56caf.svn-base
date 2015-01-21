@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7D067EE0-C1FA-4CD7-A5ED-4EADD94E4A82</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ItcastWeibo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</key>
+		<string>http://192.168.1.163:81/svn/IW/trunk/ItcastWeibo</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ItcastWeibo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</key>
+		<string>http://192.168.1.163:81/svn/IW</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://192.168.1.163:81/svn/IW/trunk/ItcastWeibo/ItcastWeibo.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8a1b7ced-fe6d-9a42-bdb9-0e2a26db0a79++1490</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ItcastWeibo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,32 @@
+//
+//  IWStatus.m
+//  ItcastWeibo
+//
+//  Created by kun on 15/1/20.
+//  Copyright (c) 2015年 kun. All rights reserved.
+//
+
+#import "IWStatus.h"
+#import "IWUser.h"
+@implementation IWStatus
+
+- (instancetype)initWithDict:(NSDictionary *)dict
+{
+    self = [super init];
+    if(self)
+    {
+        self.idstr = dict[@"idstr"];
+        self.text = dict[@"text"];
+        self.source = dict[@"source"];
+        self.reposts_count = [dict[@"reposts_count"] integerValue];
+        self.comments_count = [dict[@"comments_count"] integerValue];
+        self.user = [IWUser userWithDict:dict[@"user"]];
+    }
+    return self;
+}
+
++ (instancetype)statusWithDict:(NSDictionary *)dict
+{
+    return [[self alloc] initWithDict:dict];
+}
+@end

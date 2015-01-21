@@ -1,0 +1,35 @@
+//
+//  ItcastWeibo-Prefix.pch
+//  ItcastWeibo
+//
+//  Created by kun on 15/1/16.
+//  Copyright (c) 2015年 kun. All rights reserved.
+//
+
+#ifndef ItcastWeibo_ItcastWeibo_Prefix_pch
+#define ItcastWeibo_ItcastWeibo_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import "UIImage+IW.h"
+
+// 判断是否为IOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+// 获得RGB颜色
+#define IWColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+
+// 自定义Log
+#ifdef DEBUG
+#define IWLog(...) NSLog(__VA_ARGS__)
+#else 
+#define IWLog(...)
+#endif
+
+#endif
+
+#endif
