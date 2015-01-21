@@ -52,6 +52,7 @@
 		BC5122AB1A6F34410006F39A /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5122A21A6F34410006F39A /* NSObject+MJMember.m */; };
 		BC5239821A6C9FA10057A97C /* IWTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5239811A6C9FA10057A97C /* IWTitleButton.m */; };
 		BC5239891A6CAFF90057A97C /* IWNewfeatureContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5239881A6CAFF90057A97C /* IWNewfeatureContrller.m */; };
+		BC56CC6A1A6F7F5C00FD10DB /* IWStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC56CC691A6F7F5C00FD10DB /* IWStatusCell.m */; };
 		BC6236491A6CDAE40025643F /* IWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6236481A6CDAE40025643F /* IWPageControl.m */; };
 		BC6CEAFC1A69EF9500BDAEBB /* UIImage+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6CEAFB1A69EF9500BDAEBB /* UIImage+IW.m */; };
 		BC6CEAFF1A69F75A00BDAEBB /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6CEAFE1A69F75A00BDAEBB /* IWTabBar.m */; };
@@ -175,6 +176,8 @@
 		BC5239811A6C9FA10057A97C /* IWTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTitleButton.m; sourceTree = "<group>"; };
 		BC5239871A6CAFF90057A97C /* IWNewfeatureContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWNewfeatureContrller.h; sourceTree = "<group>"; };
 		BC5239881A6CAFF90057A97C /* IWNewfeatureContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWNewfeatureContrller.m; sourceTree = "<group>"; };
+		BC56CC681A6F7F5C00FD10DB /* IWStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusCell.h; sourceTree = "<group>"; };
+		BC56CC691A6F7F5C00FD10DB /* IWStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusCell.m; sourceTree = "<group>"; };
 		BC6236471A6CDAE40025643F /* IWPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPageControl.h; sourceTree = "<group>"; };
 		BC6236481A6CDAE40025643F /* IWPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPageControl.m; sourceTree = "<group>"; };
 		BC6CEAFA1A69EF9500BDAEBB /* UIImage+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IW.h"; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 			children = (
 				BC5239801A6C9FA10057A97C /* IWTitleButton.h */,
 				BC5239811A6C9FA10057A97C /* IWTitleButton.m */,
+				BC56CC681A6F7F5C00FD10DB /* IWStatusCell.h */,
+				BC56CC691A6F7F5C00FD10DB /* IWStatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -828,6 +833,7 @@
 				BC25B01A1A6E43BA00510CC0 /* SDWebImageDownloaderOperation.m in Sources */,
 				BC25B0181A6E43BA00510CC0 /* SDWebImageDecoder.m in Sources */,
 				BC25B01B1A6E43BA00510CC0 /* SDWebImageManager.m in Sources */,
+				BC56CC6A1A6F7F5C00FD10DB /* IWStatusCell.m in Sources */,
 				BC25B0291A6E4DBA00510CC0 /* IWUser.m in Sources */,
 				BC13D02F1A6923D8006DA8EC /* IWTabBarViewController.m in Sources */,
 				BC7425B31A6B5CAD00926C29 /* IWNavigationController.m in Sources */,
