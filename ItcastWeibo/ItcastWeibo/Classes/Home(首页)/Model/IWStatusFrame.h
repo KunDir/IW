@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 // cell的边框宽度
-#define IWStatusCellBorder 10
+#define IWStatusCellBorder 5
 // 昵称的字体
 #define IWStatusNameFont [UIFont systemFontOfSize:15]
 // 被转发微博作者的昵称的字体

@@ -97,7 +97,8 @@
         CGFloat retweetNameLabelY = IWStatusCellBorder;
         NSMutableDictionary *retweetNameAttrs = [NSMutableDictionary dictionary];
         retweetNameAttrs[NSFontAttributeName] = IWRetweetStatusNameFont;
-        CGSize retweetNameLabelSize = [status.retweeted_status.user.name sizeWithAttributes:retweetNameAttrs];
+        NSString *name = [NSString stringWithFormat:@"@%@", status.retweeted_status.user.name];
+        CGSize retweetNameLabelSize = [name sizeWithAttributes:retweetNameAttrs];
         _retweetNameLabelF = (CGRect){{retweetNameLabelX, retweetNameLabelY}, retweetNameLabelSize};
         
         // 11.被转发微博的正文
