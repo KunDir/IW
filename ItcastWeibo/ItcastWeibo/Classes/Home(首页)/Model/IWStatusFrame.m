@@ -42,18 +42,18 @@
     _nameLabelF = (CGRect){{nameLabelX, nameLabelY}, nameLabelSize};
     
     // 4.会员图标
-    if(status.user.vip)
+    if(status.user.mbtype)
     {
         CGFloat vipViewW = 14;
         CGFloat vipViewH = nameLabelSize.height;
-        CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + IWStatusCellBorder;
+        CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + IWStatusCellBorder * 0.5;
         CGFloat vipViewY = nameLabelY;
         _vipViewF = CGRectMake(vipViewX, vipViewY, vipViewW, vipViewH);
     }
     
     // 5.时间
     CGFloat timeLabelX = nameLabelX;
-    CGFloat timeLabelY = CGRectGetMaxY(_nameLabelF) + IWStatusCellBorder;
+    CGFloat timeLabelY = CGRectGetMaxY(_nameLabelF) + IWStatusCellBorder * 0.5;
     NSMutableDictionary *timeAttrs = [NSMutableDictionary dictionary];
     timeAttrs[NSFontAttributeName] = IWStatusTimeFont;
     CGSize timeLabelSize = [status.created_at sizeWithAttributes:timeAttrs];
@@ -69,7 +69,7 @@
     
     // 7.微博正文内容
     CGFloat contentLabelX = iconViewX;
-    CGFloat contentLabelY = MAX(CGRectGetMaxY(_timeLabelF), CGRectGetMaxY(_iconViewF)) + IWStatusCellBorder;
+    CGFloat contentLabelY = MAX(CGRectGetMaxY(_timeLabelF), CGRectGetMaxY(_iconViewF)) + IWStatusCellBorder * 0.5;
     NSMutableDictionary *contentAttrs = [NSMutableDictionary dictionary];
     contentAttrs[NSFontAttributeName] = IWStatusContentFont;
     CGFloat contentLabelMaxW = topViewW - IWStatusCellBorder * 2;
@@ -81,7 +81,7 @@
     {
         CGFloat photoViewWH = 70;
         CGFloat photoViewX = contentLabelX;
-        CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder;
+        CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder * 0.5;
         _photoViewF = CGRectMake(photoViewX, photoViewY, photoViewWH, photoViewWH);
     }
     
@@ -89,7 +89,7 @@
     if(status.retweeted_status){
         CGFloat retweetViewW = contentLabelMaxW;
         CGFloat retweetViewX = contentLabelX;
-        CGFloat retweetViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder;
+        CGFloat retweetViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder * 0.5;
         CGFloat retweetViewH = 0;
         
         // 10.被转发微博的昵称
@@ -103,7 +103,7 @@
         
         // 11.被转发微博的正文
         CGFloat retweetContentLabelX = retweetNameLabelX;
-        CGFloat retweetContentLabelY = CGRectGetMaxY(_retweetNameLabelF) + IWStatusCellBorder;
+        CGFloat retweetContentLabelY = CGRectGetMaxY(_retweetNameLabelF) + IWStatusCellBorder * 0.5;
         NSMutableDictionary *retweetContentAttrs = [NSMutableDictionary dictionary];
         retweetContentAttrs[NSFontAttributeName] = IWRetweetStatusContentFont;
         CGFloat retweetContentLabelMaxW = retweetViewW - 2 * IWStatusCellBorder;
@@ -115,7 +115,7 @@
         {
             CGFloat retweetPhotoViewWH = 70;
             CGFloat retweetPhotoViewX = retweetContentLabelX;
-            CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder;
+            CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder * 0.5;
             _retweetPhotoViewF = CGRectMake(retweetPhotoViewX, retweetPhotoViewY, retweetPhotoViewWH, retweetPhotoViewWH);
             
             retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);

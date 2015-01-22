@@ -60,6 +60,7 @@
 		BC7425B31A6B5CAD00926C29 /* IWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7425B21A6B5CAD00926C29 /* IWNavigationController.m */; };
 		BCA3F0451A6C0BCA00D8E5A1 /* IWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */; };
 		BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */; };
+		BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */; };
 		BCF475D31A6D13040007059E /* IWOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D21A6D13040007059E /* IWOAuthViewController.m */; };
 		BCF475EB1A6D1F0E0007059E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D91A6D1F0E0007059E /* AFHTTPRequestOperation.m */; };
 		BCF475EC1A6D1F0E0007059E /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475DB1A6D1F0E0007059E /* AFHTTPRequestOperationManager.m */; };
@@ -193,6 +194,8 @@
 		BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchBar.m; sourceTree = "<group>"; };
 		BCBA570D1A6AB81800F8957A /* IWBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeButton.h; sourceTree = "<group>"; };
 		BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeButton.m; sourceTree = "<group>"; };
+		BCD999DC1A713C2C0056C9D7 /* NSDate+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IW.h"; sourceTree = "<group>"; };
+		BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IW.m"; sourceTree = "<group>"; };
 		BCF475D11A6D13040007059E /* IWOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWOAuthViewController.h; sourceTree = "<group>"; };
 		BCF475D21A6D13040007059E /* IWOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWOAuthViewController.m; sourceTree = "<group>"; };
 		BCF475D81A6D1F0E0007059E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -633,6 +636,8 @@
 				BC6CEAFB1A69EF9500BDAEBB /* UIImage+IW.m */,
 				BC4D14851A6BD93B001A3F83 /* UIBarButtonItem+IW.h */,
 				BC4D14861A6BD93B001A3F83 /* UIBarButtonItem+IW.m */,
+				BCD999DC1A713C2C0056C9D7 /* NSDate+IW.h */,
+				BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -869,6 +874,7 @@
 				BC5122AA1A6F34410006F39A /* NSObject+MJKeyValue.m in Sources */,
 				BCF475EE1A6D1F0E0007059E /* AFNetworkReachabilityManager.m in Sources */,
 				BC5239821A6C9FA10057A97C /* IWTitleButton.m in Sources */,
+				BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */,
 				BC25B0161A6E43BA00510CC0 /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

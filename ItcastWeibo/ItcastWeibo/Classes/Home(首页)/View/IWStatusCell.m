@@ -85,6 +85,7 @@
     
     // 3.会员图标
     UIImageView *vipView = [[UIImageView alloc] init];
+    vipView.contentMode = UIViewContentModeCenter;
     [self.topView addSubview:vipView];
     self.vipView = vipView;
     
@@ -233,15 +234,18 @@
     self.nameLabel.frame = self.statusFrame.nameLabelF;
     
     // 4.vip
-    if(user.vip)
+    if(user.mbtype)
     {
         self.vipView.hidden = NO;
-        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
+        self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", user.mbrank]];
         self.vipView.frame = self.statusFrame.vipViewF;
+        
+        self.nameLabel.textColor = [UIColor orangeColor];
     }
     else
     {
         self.vipView.hidden = YES;
+        self.nameLabel.textColor = [UIColor blackColor];
     }
     
     // 5.时间
