@@ -20,4 +20,6 @@
  */
 + (UIImage *)resizedImageWithName:(NSString *)name;
 
++ (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top;
+
 @end

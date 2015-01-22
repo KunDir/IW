@@ -68,6 +68,7 @@
             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
             // 传递微博模型数据
             statusFrame.status = status;
+            
             [statusFrameArray addObject:statusFrame];
         }
         
@@ -108,6 +109,10 @@
     [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleButton;
+    
+    self.tableView.backgroundColor = IWColor(226, 226, 226);
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, IWStatusTableBorder, 0);
 }
 
 // 控制剪头方向
