@@ -75,12 +75,11 @@
     
     // 7.微博正文内容
     CGFloat contentLabelX = iconViewX;
-    CGFloat contentLabelY = MAX(CGRectGetMaxY(_iconViewF), CGRectGetMaxY(_timeLabelF)) + IWStatusCellBorder;
+    CGFloat contentLabelY = MAX(CGRectGetMaxY(_timeLabelF), CGRectGetMaxY(_iconViewF)) + IWStatusCellBorder;
     NSMutableDictionary *contentAttrs = [NSMutableDictionary dictionary];
     contentAttrs[NSFontAttributeName] = IWStatusContentFont;
     CGFloat contentLabelMaxW = topViewW - IWStatusCellBorder * 2;
-//    CGSize contentLabelSize = [status.text sizeWithAttributes:contentAttrs constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
-    CGSize contentLabelSize = [status.text boundingRectWithSize:CGSizeMake(contentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:contentAttrs context:nil].size;
+    CGSize contentLabelSize = [status.text boundingRectWithSize:CGSizeMake(contentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingTruncatesLastVisibleLine  attributes:contentAttrs context:nil].size;
     _contentLabelF = (CGRect){{contentLabelX, contentLabelY}, contentLabelSize};
     
     // 8.配图
@@ -113,7 +112,7 @@
         NSMutableDictionary *retweetContentAttrs = [NSMutableDictionary dictionary];
         retweetContentAttrs[NSFontAttributeName] = IWRetweetStatusContentFont;
         CGFloat retweetContentLabelMaxW = retweetViewW - 2 * IWStatusCellBorder;
-        CGSize retweetContentLabelSize = [status.retweeted_status.text boundingRectWithSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:retweetContentAttrs context:nil].size;
+        CGSize retweetContentLabelSize = [status.retweeted_status.text boundingRectWithSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingTruncatesLastVisibleLine attributes:retweetContentAttrs context:nil].size;
         _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentLabelY}, retweetContentLabelSize};
         
         // 12.被转发微博的配图
@@ -136,15 +135,15 @@
         
         topViewH = CGRectGetMaxY(_retweetViewF);
     }
-    else
+    else // 没有被转发微博
     {
-        if(status.thumbnail_pic)
+        if(status.thumbnail_pic) // 有配图
         {
-            topViewH = CGRectGetMaxY(_retweetPhotoViewF);
+            topViewH = CGRectGetMaxY(_photoViewF);
         }
-        else
+        else // 没有配图
         {
-            topViewH = CGRectGetMaxY(_retweetContentLabelF);
+            topViewH = CGRectGetMaxY(_contentLabelF);
         }
     }
     topViewH += IWStatusCellBorder;
