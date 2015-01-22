@@ -250,11 +250,21 @@
     
     // 5.时间
     self.timeLabel.text = status.created_at;
-    self.timeLabel.frame = self.statusFrame.timeLabelF;
+    CGFloat timeLabelX = self.statusFrame.nameLabelF.origin.x;
+    CGFloat timeLabelY = CGRectGetMaxY(self.statusFrame.nameLabelF) + IWStatusCellBorder * 0.5;
+    NSMutableDictionary *timeAttrs = [NSMutableDictionary dictionary];
+    timeAttrs[NSFontAttributeName] = IWStatusTimeFont;
+    CGSize timeLabelSize = [status.created_at sizeWithAttributes:timeAttrs];
+    self.timeLabel.frame = (CGRect){{timeLabelX, timeLabelY}, timeLabelSize};
     
     // 6.来源
     self.sourceLabel.text = status.source;
-    self.sourceLabel.frame = self.statusFrame.sourceLabelF;
+    CGFloat sourceLabelX = CGRectGetMaxX(self.timeLabel.frame) + IWStatusCellBorder;
+    CGFloat sourceLabelY = timeLabelY;
+    NSMutableDictionary *sourceAttrs = [NSMutableDictionary dictionary];
+    sourceAttrs[NSFontAttributeName] = IWStatusSourceFont;
+    CGSize sourceLabelSize = [status.source sizeWithAttributes:sourceAttrs];
+    self.sourceLabel.frame = (CGRect){{sourceLabelX, sourceLabelY}, sourceLabelSize};
     
     // 7.正文
     self.contentLabel.text = status.text;

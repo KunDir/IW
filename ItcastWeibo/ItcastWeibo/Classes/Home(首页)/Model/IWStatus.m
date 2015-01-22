@@ -13,17 +13,10 @@
 
 - (NSString *)created_at
 {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
     // 1.获得微博的发送时间
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"EEE MMM dd HH:mm:ss Z yyy";
     NSDate * createdDate = [fmt dateFromString:_created_at];
-    NSDateComponents *createdDateCmps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:createdDate];
-    
-    // 2.获取当前时间
-    NSDate *now = [NSDate date];
-    NSDateComponents *nowCmps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:now];
     
     // 3.判断微博发送时间 和 现在时间 的差距
     if([createdDate isToday]) // 今天
@@ -57,5 +50,12 @@
         return [fmt stringFromDate:createdDate];
     }
     
+}
+
+- (void)setSource:(NSString *)source
+{
+    int startLoc = [source rangeOfString:@">"].location + 1;
+    int length = [source rangeOfString:@"</"].location - startLoc;
+    _source = [NSString stringWithFormat:@"来自%@",[source substringWithRange:NSMakeRange(startLoc, length)]];
 }
 @end
