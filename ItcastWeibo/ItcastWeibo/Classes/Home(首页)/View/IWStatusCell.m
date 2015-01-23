@@ -12,6 +12,7 @@
 #import "IWStatus.h"
 #import "IWUser.h"
 #import "UIImageView+WebCache.h"
+#import "IWStatusToolbar.h"
 
 @interface IWStatusCell ()
 
@@ -42,7 +43,7 @@
 @property (nonatomic, weak) UIImageView *retweetPhotoView;
 
 // 微博的工具条
-@property (nonatomic, weak) UIImageView *statusToolbar;
+@property (nonatomic, weak) IWStatusToolbar *statusToolbar;
 @end
 
 @implementation IWStatusCell
@@ -166,9 +167,7 @@
 - (void)setupStatusToolBar
 {
     // 1.微博的工具条
-    UIImageView *statusToolbar = [[UIImageView alloc] init];
-    statusToolbar.image = [UIImage resizedImageWithName:@"timeline_card_bottom_background"];
-    statusToolbar.highlightedImage = [UIImage resizedImageWithName:@"timeline_card_bottom_background_highlighted"];
+    IWStatusToolbar *statusToolbar = [[IWStatusToolbar alloc] init];
     [self.contentView addSubview:statusToolbar];
     self.statusToolbar = statusToolbar;
 }
@@ -214,6 +213,7 @@
 - (void)setupStatusToolbar
 {
     self.statusToolbar.frame = self.statusFrame.statusToolbarF;
+    self.statusToolbar.status = self.statusFrame.status;
 }
 
 // 原创微博
