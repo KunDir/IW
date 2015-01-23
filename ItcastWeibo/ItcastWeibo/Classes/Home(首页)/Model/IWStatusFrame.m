@@ -46,7 +46,7 @@
     {
         CGFloat vipViewW = 14;
         CGFloat vipViewH = nameLabelSize.height;
-        CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + IWStatusCellBorder * 0.5;
+        CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + IWStatusCellBorder;
         CGFloat vipViewY = nameLabelY;
         _vipViewF = CGRectMake(vipViewX, vipViewY, vipViewW, vipViewH);
     }
@@ -81,7 +81,7 @@
     {
         CGFloat photoViewWH = 70;
         CGFloat photoViewX = contentLabelX;
-        CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder * 0.5;
+        CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder;
         _photoViewF = CGRectMake(photoViewX, photoViewY, photoViewWH, photoViewWH);
     }
     
@@ -89,7 +89,7 @@
     if(status.retweeted_status){
         CGFloat retweetViewW = contentLabelMaxW;
         CGFloat retweetViewX = contentLabelX;
-        CGFloat retweetViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder * 0.5;
+        CGFloat retweetViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder *0.5;
         CGFloat retweetViewH = 0;
         
         // 10.被转发微博的昵称
@@ -115,7 +115,7 @@
         {
             CGFloat retweetPhotoViewWH = 70;
             CGFloat retweetPhotoViewX = retweetContentLabelX;
-            CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder * 0.5;
+            CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder;
             _retweetPhotoViewF = CGRectMake(retweetPhotoViewX, retweetPhotoViewY, retweetPhotoViewWH, retweetPhotoViewWH);
             
             retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);
