@@ -43,7 +43,7 @@
 @property (nonatomic, weak) UIImageView *retweetPhotoView;
 
 // 微博的工具条
-@property (nonatomic, weak) UIImageView *statusToolbar;
+@property (nonatomic, weak) IWStatusToolbar *statusToolbar;
 @end
 
 @implementation IWStatusCell
@@ -213,6 +213,7 @@
 - (void)setupStatusToolbar
 {
     self.statusToolbar.frame = self.statusFrame.statusToolbarF;
+    self.statusToolbar.status = self.statusFrame.status;
 }
 
 // 原创微博

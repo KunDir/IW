@@ -7,12 +7,17 @@
 //
 
 #import "IWStatusToolbar.h"
+#import "IWStatus.h"
 
 @interface IWStatusToolbar ()
 
 @property (nonatomic, strong) NSMutableArray *btns;
 
 @property (nonatomic, strong) NSMutableArray *dividers;
+
+@property (nonatomic, weak) UIButton *retweetBtn;
+@property (nonatomic, weak) UIButton *commentBtn;
+@property (nonatomic, weak) UIButton *attitudeBtn;
 @end
 
 @implementation IWStatusToolbar
@@ -47,11 +52,11 @@
         self.highlightedImage = [UIImage resizedImageWithName:@"timeline_card_bottom_background_highlighted"];
         
         // 2.添加按钮
-        [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_background_highlighted"];
+        self.retweetBtn = [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_background_highlighted"];
         
-        [self setupBtnWithTitle:@"评论" image:@"timeline_icon_comment" bgImage:@"timeline_card_background_highlighted"];
+        self.commentBtn = [self setupBtnWithTitle:@"评论" image:@"timeline_icon_comment" bgImage:@"timeline_card_background_highlighted"];
         
-        [self setupBtnWithTitle:@"赞" image:@"timeline_icon_unlike" bgImage:@"timeline_card_background_highlighted"];
+        self.attitudeBtn = [self setupBtnWithTitle:@"赞" image:@"timeline_icon_unlike" bgImage:@"timeline_card_background_highlighted"];
         
         // 3.添加分割线
         [self setupDivider];
@@ -72,20 +77,22 @@
 }
 
 // 初始化按钮
-- (void)setupBtnWithTitle:(NSString *)title image:(NSString *)image bgImage:(NSString *)bgImage
+- (UIButton *)setupBtnWithTitle:(NSString *)title image:(NSString *)image bgImage:(NSString *)bgImage
 {
-    UIButton *retweetBtn = [[UIButton alloc] init];
-    [retweetBtn setImage:[UIImage imageWithName:image] forState:UIControlStateNormal];
-    [retweetBtn setTitle:title forState:UIControlStateNormal];
-    [retweetBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    retweetBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    retweetBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-    retweetBtn.adjustsImageWhenHighlighted = NO;
-    [retweetBtn setBackgroundImage:[UIImage resizedImageWithName:bgImage] forState:UIControlStateHighlighted];
-    [self addSubview:retweetBtn];
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setImage:[UIImage imageWithName:image] forState:UIControlStateNormal];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    btn.adjustsImageWhenHighlighted = NO;
+    [btn setBackgroundImage:[UIImage resizedImageWithName:bgImage] forState:UIControlStateHighlighted];
+    [self addSubview:btn];
     
     // 添加按钮到数组
-    [self.btns addObject:retweetBtn];
+    [self.btns addObject:btn];
+    
+    return btn;
 }
 
 - (void)layoutSubviews
@@ -93,8 +100,10 @@
     [super layoutSubviews];
     
     // 设置按钮的frame
+    int dividerCount = self.dividers.count; // 分割线的个数
+    CGFloat dividerW = 2; // 分割线的宽度
     int btnCount = self.btns.count;
-    CGFloat btnW = self.frame.size.width / btnCount;
+    CGFloat btnW = (self.frame.size.width - dividerW * dividerCount) / btnCount;
     CGFloat btnH = self.frame.size.height;
     CGFloat btnY = 0;
     
@@ -103,22 +112,58 @@
         UIButton *btn = self.btns[index];
         
         // 设置frame
-        CGFloat btnX = index * btnW;
+        CGFloat btnX = index * (btnW + dividerW);
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     }
     
     // 2.设置分割线的frame
-    int dividerCount = self.dividers.count;
     CGFloat dividerH = btnH;
-    CGFloat dividerW = 2;
     CGFloat dividerY = 0;
     for(int index = 0 ;index < dividerCount; index++)
     {
         UIImageView *divider = self.dividers[index];
         
         // 设置frame
-        CGFloat dividerX = (index + 1) * btnW;
+        UIButton *btn = self.btns[index];
+        CGFloat dividerX = CGRectGetMaxX(btn.frame);
         divider.frame = CGRectMake(dividerX, dividerY, dividerW, dividerH);
+    }
+}
+
+- (void)setStatus:(IWStatus *)status
+{
+    _status = status;
+    
+    // 1.设置转发数
+    [self setupBtn:self.retweetBtn originalTitle:@"转发" count:status.reposts_count];
+    
+    [self setupBtn:self.commentBtn originalTitle:@"评论" count:status.comments_count];
+    
+    [self setupBtn:self.attitudeBtn originalTitle:@"赞" count:status.attitudes_count];
+}
+
+// 设置按钮的显示标题
+- (void)setupBtn:(UIButton *)btn originalTitle:(NSString *)originalTitle count:(int)count
+{
+    if(count)
+    {
+        NSString *title = nil;
+        if(count < 10000){
+            title = [NSString stringWithFormat:@"%d", count];
+            
+        }
+        else
+        {
+            double countDouble = count / 10000.0;
+            title = [NSString stringWithFormat:@"%.1f万", countDouble];
+            
+            title = [title stringByReplacingOccurrencesOfString:@".0" withString:@""];
+        }
+        [btn setTitle:title forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btn setTitle:originalTitle forState:UIControlStateNormal];
     }
 }
 @end
