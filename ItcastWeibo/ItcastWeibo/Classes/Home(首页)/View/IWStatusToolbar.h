@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class IWStatus;
 @interface IWStatusToolbar : UIImageView
 
+@property (nonatomic, strong) IWStatus *status;
 @end
