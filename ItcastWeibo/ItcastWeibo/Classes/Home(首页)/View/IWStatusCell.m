@@ -12,6 +12,7 @@
 #import "IWStatus.h"
 #import "IWUser.h"
 #import "UIImageView+WebCache.h"
+#import "IWStatusToolbar.h"
 
 @interface IWStatusCell ()
 
@@ -166,9 +167,7 @@
 - (void)setupStatusToolBar
 {
     // 1.微博的工具条
-    UIImageView *statusToolbar = [[UIImageView alloc] init];
-    statusToolbar.image = [UIImage resizedImageWithName:@"timeline_card_bottom_background"];
-    statusToolbar.highlightedImage = [UIImage resizedImageWithName:@"timeline_card_bottom_background_highlighted"];
+    IWStatusToolbar *statusToolbar = [[IWStatusToolbar alloc] init];
     [self.contentView addSubview:statusToolbar];
     self.statusToolbar = statusToolbar;
 }

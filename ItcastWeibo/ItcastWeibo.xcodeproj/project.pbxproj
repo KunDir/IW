@@ -59,6 +59,7 @@
 		BC6CEAFF1A69F75A00BDAEBB /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6CEAFE1A69F75A00BDAEBB /* IWTabBar.m */; };
 		BC7425B31A6B5CAD00926C29 /* IWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7425B21A6B5CAD00926C29 /* IWNavigationController.m */; };
 		BCA3F0451A6C0BCA00D8E5A1 /* IWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */; };
+		BCBA53651A7229D000780CA2 /* IWStatusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */; };
 		BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */; };
 		BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */; };
 		BCF475D31A6D13040007059E /* IWOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D21A6D13040007059E /* IWOAuthViewController.m */; };
@@ -192,6 +193,8 @@
 		BC7425B21A6B5CAD00926C29 /* IWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWNavigationController.m; sourceTree = "<group>"; };
 		BCA3F0431A6C0BCA00D8E5A1 /* IWSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchBar.h; sourceTree = "<group>"; };
 		BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchBar.m; sourceTree = "<group>"; };
+		BCBA53631A7229D000780CA2 /* IWStatusToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusToolbar.h; sourceTree = "<group>"; };
+		BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusToolbar.m; sourceTree = "<group>"; };
 		BCBA570D1A6AB81800F8957A /* IWBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeButton.h; sourceTree = "<group>"; };
 		BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeButton.m; sourceTree = "<group>"; };
 		BCD999DC1A713C2C0056C9D7 /* NSDate+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IW.h"; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				BC5239811A6C9FA10057A97C /* IWTitleButton.m */,
 				BC56CC681A6F7F5C00FD10DB /* IWStatusCell.h */,
 				BC56CC691A6F7F5C00FD10DB /* IWStatusCell.m */,
+				BCBA53631A7229D000780CA2 /* IWStatusToolbar.h */,
+				BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBA53651A7229D000780CA2 /* IWStatusToolbar.m in Sources */,
 				BC25B0211A6E43BA00510CC0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				BC5122A31A6F34410006F39A /* MJArgument.m in Sources */,
 				BC6CEAFF1A69F75A00BDAEBB /* IWTabBar.m in Sources */,
