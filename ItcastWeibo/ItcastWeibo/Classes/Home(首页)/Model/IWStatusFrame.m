@@ -10,6 +10,7 @@
 
 #import "IWStatus.h"
 #import "IWUser.h"
+#import "IWPhotosView.h"
 
 @implementation IWStatusFrame
 
@@ -79,10 +80,11 @@
     // 8.配图
     if(status.pic_urls.count)
     {
-        CGFloat photoViewWH = 70;
+#warning 根据图片个数计算整个相册的尺寸
+        CGSize photosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.pic_urls.count];
         CGFloat photoViewX = contentLabelX;
         CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder;
-        _photoViewF = CGRectMake(photoViewX, photoViewY, photoViewWH, photoViewWH);
+        _photoViewF = CGRectMake(photoViewX, photoViewY, photosViewSize.width, photosViewSize.height);
     }
     
     // 9.被转发微博
@@ -113,12 +115,13 @@
         // 12.被转发微博的配图
         if(status.retweeted_status.pic_urls.count)
         {
-            CGFloat retweetPhotoViewWH = 70;
+#warning 根据图片个数计算整个相册的尺寸
+            CGSize retweetPhotosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.retweeted_status.pic_urls.count];
             CGFloat retweetPhotoViewX = retweetContentLabelX;
             CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder;
-            _retweetPhotoViewF = CGRectMake(retweetPhotoViewX, retweetPhotoViewY, retweetPhotoViewWH, retweetPhotoViewWH);
+            _retweetPhotosViewF = CGRectMake(retweetPhotoViewX, retweetPhotoViewY, retweetPhotosViewSize.width, retweetPhotosViewSize.height);
             
-            retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);
+            retweetViewH = CGRectGetMaxY(_retweetPhotosViewF);
         }
         else
         {
