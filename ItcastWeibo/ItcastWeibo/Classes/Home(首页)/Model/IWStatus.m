@@ -9,7 +9,16 @@
 #import "IWStatus.h"
 #import "IWUser.h"
 #import "NSDate+IW.h"
+#import "IWPhoto.h"
+
+#import "MJExtension.h"
 @implementation IWStatus
+
+// 实现数组里面装什么
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"pic_urls" : [IWPhoto class]};
+}
 
 - (NSString *)created_at
 {

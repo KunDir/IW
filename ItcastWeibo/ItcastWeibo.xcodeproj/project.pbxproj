@@ -63,6 +63,7 @@
 		BCAB4DB31A728F2500876FF8 /* IWStatusTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB4DB21A728F2500876FF8 /* IWStatusTopView.m */; };
 		BCBA53651A7229D000780CA2 /* IWStatusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */; };
 		BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */; };
+		BCBB8BAC1A7359C100A2CE9A /* IWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */; };
 		BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */; };
 		BCF475D31A6D13040007059E /* IWOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D21A6D13040007059E /* IWOAuthViewController.m */; };
 		BCF475EB1A6D1F0E0007059E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D91A6D1F0E0007059E /* AFHTTPRequestOperation.m */; };
@@ -203,6 +204,8 @@
 		BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusToolbar.m; sourceTree = "<group>"; };
 		BCBA570D1A6AB81800F8957A /* IWBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeButton.h; sourceTree = "<group>"; };
 		BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeButton.m; sourceTree = "<group>"; };
+		BCBB8BAA1A7359C100A2CE9A /* IWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPhoto.h; sourceTree = "<group>"; };
+		BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPhoto.m; sourceTree = "<group>"; };
 		BCD999DC1A713C2C0056C9D7 /* NSDate+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IW.h"; sourceTree = "<group>"; };
 		BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IW.m"; sourceTree = "<group>"; };
 		BCF475D11A6D13040007059E /* IWOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWOAuthViewController.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				BC25B0281A6E4DBA00510CC0 /* IWUser.m */,
 				BC50944F1A6F9BDD005D2BA2 /* IWStatusFrame.h */,
 				BC5094501A6F9BDD005D2BA2 /* IWStatusFrame.m */,
+				BCBB8BAA1A7359C100A2CE9A /* IWPhoto.h */,
+				BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				BC13D0301A6923D8006DA8EC /* IWMeViewController.m in Sources */,
 				BC5122A71A6F34410006F39A /* MJType.m in Sources */,
 				BCF74E211A6A0C3600748663 /* IWTabBarButton.m in Sources */,
+				BCBB8BAC1A7359C100A2CE9A /* IWPhoto.m in Sources */,
 				BC25B01E1A6E43BA00510CC0 /* UIImage+GIF.m in Sources */,
 				BC25B01C1A6E43BA00510CC0 /* SDWebImagePrefetcher.m in Sources */,
 				BC13D0321A6923D8006DA8EC /* AppDelegate.m in Sources */,
