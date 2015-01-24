@@ -27,20 +27,95 @@
 
 @interface IWHomeViewController ()
 
-@property (nonatomic, strong) NSArray *statusesFrames;
+@property (nonatomic, strong) NSMutableArray *statusesFrames;
 
 @end
 
 @implementation IWHomeViewController
 
+- (NSMutableArray *)statusesFrames
+{
+    if(_statusesFrames == nil)
+    {
+        _statusesFrames = [NSMutableArray array];
+    }
+    return _statusesFrames;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 0.集成刷新控件
+    [self setupRefreshView];
     
     // 1.设置导航栏的内容
     [self setupNavBar];
     
     // 2.加载微博数据
-    [self setupStatusData];
+//    [self setupStatusData];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefreshView
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshControlChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [refreshControl beginRefreshing];
+    
+    [self refreshControlChanged:refreshControl];
+}
+
+- (void)refreshControlChanged:(UIRefreshControl *)refreshControl
+{
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    params[@"count"] = @5;
+    if(self.statusesFrames.count){
+        IWStatusFrame *statusFrame = self.statusesFrames[0];
+        // 加载ID比since_id大的微博
+        params[@"since_id"] = statusFrame.status.idstr;
+    }
+    
+    // 3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // 取出所有的微博数据（每一条微博都是一个字典）
+        
+        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
+        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        // 创建Frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for(IWStatus *status in statusArray)
+        {
+            IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
+            // 传递微博模型数据
+            statusFrame.status = status;
+            
+            [statusFrameArray addObject:statusFrame];
+        }
+        
+        // 将最新的数据追加到旧数据的最前面
+        NSMutableArray *tempArray = [NSMutableArray array];
+        [tempArray addObjectsFromArray:statusFrameArray];
+        [tempArray addObjectsFromArray:self.statusesFrames];
+        self.statusesFrames = tempArray;
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 停止刷新控制器刷新状态
+        [refreshControl endRefreshing];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 停止刷新控制器刷新状态
+        [refreshControl endRefreshing];
+    }];
 }
 
 // 加载微博数据
@@ -52,7 +127,7 @@
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @20;
+    params[@"count"] = @5;
     
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -74,6 +149,7 @@
         
         // 赋值
         self.statusesFrames = statusFrameArray;
+        
         
         // 刷新表格
         [self.tableView reloadData];
@@ -112,7 +188,7 @@
     
     self.tableView.backgroundColor = IWColor(226, 226, 226);
     
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, IWStatusTableBorder, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, IWStatusTableBorder, 0);
     // 不显示cell的分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
