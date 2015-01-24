@@ -113,6 +113,8 @@
     self.tableView.backgroundColor = IWColor(226, 226, 226);
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, IWStatusTableBorder, 0);
+    // 不显示cell的分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 // 控制剪头方向
