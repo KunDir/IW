@@ -78,7 +78,7 @@
     frame.origin.x = IWStatusTableBorder;
     frame.origin.y += IWStatusTableBorder;
     frame.size.width -= 2 * IWStatusTableBorder;
-    frame.size.height -= IWStatusTableBorder * 1.3;
+    frame.size.height -= IWStatusTableBorder;
     [super setFrame:frame];
 }
 
