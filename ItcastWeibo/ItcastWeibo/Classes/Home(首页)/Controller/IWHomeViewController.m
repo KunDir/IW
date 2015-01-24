@@ -52,6 +52,28 @@
     
     // 2.加载微博数据
 //    [self setupStatusData];
+    
+    // 获取用户信息
+    [self setupUserData];
+}
+
+// 获取用户信息
+- (void)setupUserData
+{
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    params[@"uid"] = @([IWAccountTool account].uid);
+    
+    // 3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 /**
@@ -234,7 +256,7 @@
     // 图标
     [titleButton setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
     // 文字
-    [titleButton setTitle:@"哈哈哈" forState:UIControlStateNormal];
+    [titleButton setTitle:@"首页" forState:UIControlStateNormal];
     [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     CGSize titleSize = [titleButton.titleLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:titleButton.titleLabel.font, NSFontAttributeName, nil]];
