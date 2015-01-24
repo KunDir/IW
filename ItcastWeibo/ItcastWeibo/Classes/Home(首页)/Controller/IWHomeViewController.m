@@ -112,9 +112,69 @@
         // 停止刷新控制器刷新状态
         [refreshControl endRefreshing];
         
+        // 显示最新微博的数量（给用户一些友善的提示）
+        [self showNewStatusCount:statusFrameArray.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // 停止刷新控制器刷新状态
         [refreshControl endRefreshing];
+    }];
+}
+
+/**
+ *  显示最新微博的数量
+ *
+ *  @param count 最新微博的数量
+ */
+- (void)showNewStatusCount:(int)count
+{
+    // 1.创建一个按钮
+    UIButton *btn = [[UIButton alloc] init];
+    // below：下面 btn会显示在
+    [self.navigationController.view insertSubview:btn belowSubview:self.navigationController.navigationBar];
+    
+    // 2.设置图片和文字
+    btn.userInteractionEnabled = NO;
+    [btn setBackgroundImage:[UIImage resizedImageWithName:@"timeline_new_status_background"] forState:UIControlStateNormal];
+//    [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    if(count)
+    {
+        NSString *title = [NSString stringWithFormat:@"共有%d条新微博", count];
+        [btn setTitle:title forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btn setTitle:@"没有新的微博数据" forState:UIControlStateNormal];
+    }
+    
+    // 3.设置按钮的初始frame
+    CGFloat btnH = 30;
+    CGFloat btnY = 64 - btnH;
+    CGFloat btnX = IWStatusTableBorder;
+    CGFloat btnW = self.view.frame.size.width - 2 * btnX;
+    btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+    
+    // 4.通过动画移动按钮（按钮向下移动 btnH + 1）
+    [UIView animateWithDuration:0.7 animations:^{
+        btn.transform = CGAffineTransformMakeTranslation(0, btnH + 1);
+    } completion:^(BOOL finished) { // 向下移动的动画执行完毕后
+//        [UIView animateKeyframesWithDuration:0.7 delay:1.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
+//            // 执行向上移动的动画（清空transform）
+//            btn.transform = CGAffineTransformIdentity;
+//            
+//        } completion:^(BOOL finished) {
+//            // 将btn从内存中移除
+//            [btn removeFromSuperview];
+//        }];
+        
+        // 这段代码 ios6也能运行
+        [UIView animateWithDuration:0.7 delay:1.0 options:UIViewAnimationOptionCurveLinear animations:^{
+            // 执行向上移动的动画（清空transform）
+            btn.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            // 将btn从内存中移除
+            [btn removeFromSuperview];
+        }];
     }];
 }
 
