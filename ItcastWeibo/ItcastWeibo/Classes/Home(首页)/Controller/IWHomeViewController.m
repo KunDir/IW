@@ -21,11 +21,14 @@
 #import "MJExtension.h"
 #import "IWStatusFrame.h"
 #import "IWStatusCell.h"
+#import "IWUser.h"
 
 #define NavigationbarArrowDown 0
 #define NavigationBarArrowUp 1
 
 @interface IWHomeViewController ()
+
+@property (nonatomic, weak) IWTitleButton *titleButton;
 
 @property (nonatomic, strong) NSMutableArray *statusesFrames;
 
@@ -52,6 +55,30 @@
     
     // 2.加载微博数据
 //    [self setupStatusData];
+    
+    // 获取用户信息
+    [self setupUserData];
+}
+
+// 获取用户信息
+- (void)setupUserData
+{
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    params[@"uid"] = @([IWAccountTool account].uid);
+    
+    // 3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        IWUser *user = [IWUser objectWithKeyValues:responseObject];
+        // 设置标题文字
+        [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 /**
@@ -233,18 +260,19 @@
     
     // 图标
     [titleButton setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
-    // 文字
-    [titleButton setTitle:@"哈哈哈" forState:UIControlStateNormal];
+    // 位置和尺寸
+    titleButton.frame = CGRectMake(0, 0, 0, 40);
+    // 文字 setTitle方法被重写了
+    [titleButton setTitle:@"首页" forState:UIControlStateNormal];
     [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    CGSize titleSize = [titleButton.titleLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:titleButton.titleLabel.font, NSFontAttributeName, nil]];
-    
-    
-    titleButton.frame = CGRectMake(0, 0, titleSize.width + 24, 40);
+//    CGSize titleSize = [titleButton.titleLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:titleButton.titleLabel.font, NSFontAttributeName, nil]];    
     
     [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleButton;
+    
+    self.titleButton = titleButton;
     
     self.tableView.backgroundColor = IWColor(226, 226, 226);
     

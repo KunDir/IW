@@ -54,4 +54,23 @@
     CGFloat titleH = contentRect.size.height;
     return CGRectMake(titleX, titleY, titleW, titleH);
 };
+
+/**
+ *  重写setTitle方法
+ *
+ *  @param title
+ *  @param state
+ */
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    // 根据title计算自己的宽度
+    NSMutableDictionary *attriDict = [NSMutableDictionary dictionary];
+    attriDict[NSFontAttributeName] = self.titleLabel.font;
+    CGFloat titleW = [title sizeWithAttributes:attriDict].width;
+    CGRect frame = self.frame;
+    frame.size.width = titleW + IWTitleButtonImageW + 3;
+    self.frame = frame;
+    
+    [super setTitle:title forState:state];
+}
 @end
