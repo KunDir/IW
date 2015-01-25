@@ -76,6 +76,11 @@
         IWUser *user = [IWUser objectWithKeyValues:responseObject];
         // 设置标题文字
         [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+        
+        // 保持昵称
+        IWAccount *account = [IWAccountTool account];
+        account.name = user.name;
+        [IWAccountTool saveAccount:account];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -263,7 +268,14 @@
     // 位置和尺寸
     titleButton.frame = CGRectMake(0, 0, 0, 40);
     // 文字 setTitle方法被重写了
-    [titleButton setTitle:@"首页" forState:UIControlStateNormal];
+    if([IWAccountTool account].name)
+    {
+        [titleButton setTitle:[IWAccountTool account].name forState:UIControlStateNormal];
+    }
+    else
+    {
+        [titleButton setTitle:@"首页" forState:UIControlStateNormal];
+    }
     [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
 //    CGSize titleSize = [titleButton.titleLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:titleButton.titleLabel.font, NSFontAttributeName, nil]];    
