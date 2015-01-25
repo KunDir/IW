@@ -82,6 +82,8 @@
 		BCBA53651A7229D000780CA2 /* IWStatusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */; };
 		BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */; };
 		BCBB8BAC1A7359C100A2CE9A /* IWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */; };
+		BCD975041A74FC310004310F /* IWComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD975031A74FC310004310F /* IWComposeViewController.m */; };
+		BCD975081A7504A30004310F /* IWTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD975071A7504A30004310F /* IWTextView.m */; };
 		BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */; };
 		BCF475D31A6D13040007059E /* IWOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D21A6D13040007059E /* IWOAuthViewController.m */; };
 		BCF475EB1A6D1F0E0007059E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF475D91A6D1F0E0007059E /* AFHTTPRequestOperation.m */; };
@@ -257,6 +259,10 @@
 		BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeButton.m; sourceTree = "<group>"; };
 		BCBB8BAA1A7359C100A2CE9A /* IWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPhoto.h; sourceTree = "<group>"; };
 		BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWPhoto.m; sourceTree = "<group>"; };
+		BCD975021A74FC310004310F /* IWComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWComposeViewController.h; sourceTree = "<group>"; };
+		BCD975031A74FC310004310F /* IWComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWComposeViewController.m; sourceTree = "<group>"; };
+		BCD975061A7504A30004310F /* IWTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTextView.h; sourceTree = "<group>"; };
+		BCD975071A7504A30004310F /* IWTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTextView.m; sourceTree = "<group>"; };
 		BCD999DC1A713C2C0056C9D7 /* NSDate+IW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IW.h"; sourceTree = "<group>"; };
 		BCD999DD1A713C2C0056C9D7 /* NSDate+IW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IW.m"; sourceTree = "<group>"; };
 		BCF475D11A6D13040007059E /* IWOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWOAuthViewController.h; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 		BC13D00A1A6923D8006DA8EC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BCD975001A74FBF90004310F /* Compose(发微博) */,
 				BCF475CD1A6D12BC0007059E /* OAuth(授权) */,
 				BC5239831A6CAF990057A97C /* Newfeature(新特性) */,
 				BC13D00B1A6923D8006DA8EC /* Discover(广场) */,
@@ -760,6 +767,33 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		BCD975001A74FBF90004310F /* Compose(发微博) */ = {
+			isa = PBXGroup;
+			children = (
+				BCD975051A7503DC0004310F /* View */,
+				BCD975011A74FBF90004310F /* Controller */,
+			);
+			path = "Compose(发微博)";
+			sourceTree = "<group>";
+		};
+		BCD975011A74FBF90004310F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BCD975021A74FC310004310F /* IWComposeViewController.h */,
+				BCD975031A74FC310004310F /* IWComposeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BCD975051A7503DC0004310F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BCD975061A7504A30004310F /* IWTextView.h */,
+				BCD975071A7504A30004310F /* IWTextView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BCF475CD1A6D12BC0007059E /* OAuth(授权) */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,6 +988,7 @@
 				BC25B0221A6E43BA00510CC0 /* UIImageView+WebCache.m in Sources */,
 				BCF475EB1A6D1F0E0007059E /* AFHTTPRequestOperation.m in Sources */,
 				BC06ED251A6E01640091B55D /* IWAccountTool.m in Sources */,
+				BCD975081A7504A30004310F /* IWTextView.m in Sources */,
 				BC5122A61A6F34410006F39A /* MJMethod.m in Sources */,
 				BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */,
 				BCAB4DB01A72892400876FF8 /* IWRetweetStatusView.m in Sources */,
@@ -996,6 +1031,7 @@
 				BCF475F01A6D1F0E0007059E /* AFURLConnectionOperation.m in Sources */,
 				BC06ED211A6DFD350091B55D /* IWWeiboTool.m in Sources */,
 				BCF475F11A6D1F0E0007059E /* AFURLRequestSerialization.m in Sources */,
+				BCD975041A74FC310004310F /* IWComposeViewController.m in Sources */,
 				BCF475F31A6D1F0E0007059E /* AFURLSessionManager.m in Sources */,
 				BC25B0141A6E43BA00510CC0 /* MKAnnotationView+WebCache.m in Sources */,
 				BC25B01F1A6E43BA00510CC0 /* UIImage+MultiFormat.m in Sources */,

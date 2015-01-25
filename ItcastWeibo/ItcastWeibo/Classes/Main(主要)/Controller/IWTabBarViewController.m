@@ -17,6 +17,8 @@
 
 #import "IWNavigationController.h"
 
+#import "IWComposeViewController.h"
+
 @interface IWTabBarViewController () <IWTabBarDelegate>
 
 @property (nonatomic, weak) IWTabBar *custemTabBar;
@@ -121,6 +123,13 @@
     
     // 添加自定义tabbar内部的按钮
     [self.custemTabBar addTabBarButtonWithItem:childVc.tabBarItem];
+}
+
+- (void)tabBarDidClickedPlusButton:(IWTabBar *)tabBar
+{
+    IWComposeViewController *compose = [[IWComposeViewController alloc] init];
+    IWNavigationController *nav = [[IWNavigationController alloc] initWithRootViewController:compose];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 

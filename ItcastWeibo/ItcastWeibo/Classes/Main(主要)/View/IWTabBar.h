@@ -15,6 +15,8 @@
 @optional
 - (void)tabBar:(IWTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to;
 
+- (void)tabBarDidClickedPlusButton:(IWTabBar *)tabBar;
+
 @end
 
 @interface IWTabBar : UIView
