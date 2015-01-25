@@ -13,6 +13,10 @@
 
 #import "IWComposeViewController.h"
 #import "IWTextView.h"
+#import "AFNetworking.h"
+#import "IWAccount.h"
+#import "IWAccountTool.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface IWComposeViewController ()
 @property (nonatomic, weak) IWTextView *textView;
@@ -55,7 +59,18 @@
     [self.view addSubview:textView];
     self.textView = textView;
     // 监听textView文字改变的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+    [IWNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.textView becomeFirstResponder];
+}
+- (void)dealloc
+{
+    [IWNotificationCenter removeObserver:self];
 }
 
 - (void)textDidChange
@@ -70,7 +85,27 @@
 
 - (void)send
 {
+    // AFNetWorking\AFN
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"status"] = self.textView.text;
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    
+    // 3.发送请求
+    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // 7.隐藏提醒框
+        [MBProgressHUD showSuccess:@"发送成功"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 隐藏提醒框
+        [MBProgressHUD showError:@"发送失败"];
+    }];
+    
+    // 关闭控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
