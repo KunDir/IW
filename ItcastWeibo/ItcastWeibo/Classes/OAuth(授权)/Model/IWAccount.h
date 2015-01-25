@@ -16,7 +16,10 @@
 @property (nonatomic, assign) long long expires_in;
 @property (nonatomic, assign) long long remind_in;
 @property (nonatomic, assign) long long uid;
-
+/**
+ *  当前登录用户的昵称
+ */
+@property (nonatomic, copy) NSString *name;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
 + (instancetype)accountWithDict:(NSDictionary *)dict;
