@@ -76,6 +76,9 @@
 		BCACA5EF1A74A779002FCA6F /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BCACA5E81A74A779002FCA6F /* MJRefreshConst.m */; };
 		BCACA5F01A74A779002FCA6F /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCACA5EA1A74A779002FCA6F /* MJRefreshFooterView.m */; };
 		BCACA5F11A74A779002FCA6F /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCACA5EC1A74A779002FCA6F /* MJRefreshHeaderView.m */; };
+		BCACA5F51A74BED4002FCA6F /* new_feature_1-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCACA5F21A74BED4002FCA6F /* new_feature_1-568h@2x.png */; };
+		BCACA5F61A74BED4002FCA6F /* new_feature_2-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCACA5F31A74BED4002FCA6F /* new_feature_2-568h@2x.png */; };
+		BCACA5F71A74BED4002FCA6F /* new_feature_3-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCACA5F41A74BED4002FCA6F /* new_feature_3-568h@2x.png */; };
 		BCBA53651A7229D000780CA2 /* IWStatusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */; };
 		BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA570E1A6AB81800F8957A /* IWBadgeButton.m */; };
 		BCBB8BAC1A7359C100A2CE9A /* IWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */; };
@@ -244,6 +247,9 @@
 		BCACA5EA1A74A779002FCA6F /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
 		BCACA5EB1A74A779002FCA6F /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
 		BCACA5EC1A74A779002FCA6F /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		BCACA5F21A74BED4002FCA6F /* new_feature_1-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_feature_1-568h@2x.png"; sourceTree = "<group>"; };
+		BCACA5F31A74BED4002FCA6F /* new_feature_2-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_feature_2-568h@2x.png"; sourceTree = "<group>"; };
+		BCACA5F41A74BED4002FCA6F /* new_feature_3-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_feature_3-568h@2x.png"; sourceTree = "<group>"; };
 		BCBA53631A7229D000780CA2 /* IWStatusToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusToolbar.h; sourceTree = "<group>"; };
 		BCBA53641A7229D000780CA2 /* IWStatusToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusToolbar.m; sourceTree = "<group>"; };
 		BCBA570D1A6AB81800F8957A /* IWBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeButton.h; sourceTree = "<group>"; };
@@ -613,6 +619,9 @@
 		BC3FAD421A68F07D0060B965 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BCACA5F21A74BED4002FCA6F /* new_feature_1-568h@2x.png */,
+				BCACA5F31A74BED4002FCA6F /* new_feature_2-568h@2x.png */,
+				BCACA5F41A74BED4002FCA6F /* new_feature_3-568h@2x.png */,
 				BC3FAD4F1A68F07D0060B965 /* Images.xcassets */,
 				BC3FAD431A68F07D0060B965 /* Info.plist */,
 			);
@@ -904,9 +913,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCACA5F61A74BED4002FCA6F /* new_feature_2-568h@2x.png in Resources */,
+				BCACA5F71A74BED4002FCA6F /* new_feature_3-568h@2x.png in Resources */,
 				BC8F731E1A73A4510000D663 /* MJPhotoBrowser.bundle in Resources */,
 				BC3FAD501A68F07D0060B965 /* Images.xcassets in Resources */,
 				BCACA5ED1A74A779002FCA6F /* MJRefresh.bundle in Resources */,
+				BCACA5F51A74BED4002FCA6F /* new_feature_1-568h@2x.png in Resources */,
 				BC25AF921A6E0F5500510CC0 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

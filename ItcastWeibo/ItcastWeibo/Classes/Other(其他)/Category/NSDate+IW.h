@@ -24,5 +24,12 @@
  */
 - (BOOL)isThisYear;
 
+/**
+ *  返回一个只有年月日的时间
+ *
+ *  @return 
+ */
+- (NSDate *)dateWithYMD;
+
 - (NSDateComponents *)deltaWithNow;
 @end
