@@ -22,15 +22,20 @@
 #import "IWStatusFrame.h"
 #import "IWStatusCell.h"
 #import "IWUser.h"
+#import "MJRefresh.h"
 
 #define NavigationbarArrowDown 0
 #define NavigationBarArrowUp 1
 
-@interface IWHomeViewController ()
+@interface IWHomeViewController () <MJRefreshBaseViewDelegate>
 
 @property (nonatomic, weak) IWTitleButton *titleButton;
 
 @property (nonatomic, strong) NSMutableArray *statusesFrames;
+
+@property (nonatomic, weak) MJRefreshFooterView *footer;
+
+@property (nonatomic, weak) MJRefreshHeaderView *header;
 
 @end
 
@@ -91,16 +96,94 @@
  */
 - (void)setupRefreshView
 {
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+    // 下拉刷新
+    MJRefreshHeaderView *heaer = [MJRefreshHeaderView header];
+    heaer.scrollView = self.tableView;
+    heaer.delegate = self;
+    // 自动进入刷新状态
+    [heaer beginRefreshing];
+    self.header = heaer;
     
-    [refreshControl beginRefreshing];
-    
-    [self refreshControlChanged:refreshControl];
+    // 上拉刷新
+    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
+    footer.scrollView = self.tableView;
+    footer.delegate = self;
+    self.footer = footer;
 }
 
-- (void)refreshControlChanged:(UIRefreshControl *)refreshControl
+- (void)dealloc
+{
+    [self.header free];
+    [self.footer free];
+}
+
+/**
+ *  刷新控件进入开始刷新状态的时候调研
+ *
+ *  @param refreshView
+ */
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if([refreshView isKindOfClass:[MJRefreshFooterView class]])
+    {
+        [self loadMoreData];
+    }
+    else
+    {
+        [self loadNewData];
+    }
+    
+}
+
+- (void)loadMoreData
+{
+    // 发送请求加载更多的数据
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    params[@"count"] = @10;
+    if(self.statusesFrames.count){
+        IWStatusFrame *statusFrame = [self.statusesFrames lastObject];
+        // 加载ID比max_id大的微博
+        long long maxId = [statusFrame.status.idstr longLongValue] - 1;
+        params[@"max_id"] = @(maxId);
+    }
+    
+    // 3.发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // 取出所有的微博数据（每一条微博都是一个字典）
+        
+        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
+        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        // 创建Frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for(IWStatus *status in statusArray)
+        {
+            IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
+            // 传递微博模型数据
+            statusFrame.status = status;
+            
+            [statusFrameArray addObject:statusFrame];
+        }
+        // 添加新数据到旧数据的后面
+        [self.statusesFrames addObjectsFromArray:statusFrameArray];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        [self.footer endRefreshing];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 停止刷新控制器刷新状态
+        [self.footer endRefreshing];
+    }];
+}
+
+- (void)loadNewData
 {
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -142,13 +225,13 @@
         [self.tableView reloadData];
         
         // 停止刷新控制器刷新状态
-        [refreshControl endRefreshing];
+        [self.header endRefreshing];
         
         // 显示最新微博的数量（给用户一些友善的提示）
         [self showNewStatusCount:statusFrameArray.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // 停止刷新控制器刷新状态
-        [refreshControl endRefreshing];
+        [self.header endRefreshing];
     }];
 }
 
@@ -182,8 +265,8 @@
     // 3.设置按钮的初始frame
     CGFloat btnH = 30;
     CGFloat btnY = 64 - btnH;
-    CGFloat btnX = IWStatusTableBorder;
-    CGFloat btnW = self.view.frame.size.width - 2 * btnX;
+    CGFloat btnX = 0;
+    CGFloat btnW = self.view.frame.size.width;
     btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     
     // 4.通过动画移动按钮（按钮向下移动 btnH + 1）
@@ -219,7 +302,7 @@
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @5;
+    params[@"count"] = @10;
     
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
