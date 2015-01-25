@@ -17,9 +17,11 @@
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
+#import "IWComposeToolbar.h"
 
-@interface IWComposeViewController ()
+@interface IWComposeViewController () <UITextViewDelegate>
 @property (nonatomic, weak) IWTextView *textView;
+@property (nonatomic, strong) IWComposeToolbar *toolbar;
 @end
 
 @implementation IWComposeViewController
@@ -32,6 +34,21 @@
     
     // 添加textView
     [self setupTextView];
+    
+    // 添加toolbar
+    [self setupToolbar];
+}
+
+- (void)setupToolbar
+{
+    IWComposeToolbar *toolbar = [[IWComposeToolbar alloc] init];
+    CGFloat toolbarH = 44;
+    CGFloat toolbarW = self.view.frame.size.width;
+    CGFloat toolbarX = 0;
+    CGFloat toolbarY = self.view.frame.size.height - toolbarH;
+    toolbar.frame = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
+    [self.view addSubview:toolbar];
+    self.toolbar = toolbar;
 }
 
 /**
@@ -57,10 +74,48 @@
     textView.font = [UIFont systemFontOfSize: 15];
     textView.frame = self.view.bounds;
     textView.placeholder = @"分享新鲜事";
+    textView.alwaysBounceVertical = YES;
+    textView.delegate = self;
     [self.view addSubview:textView];
     self.textView = textView;
     // 监听textView文字改变的通知
     [IWNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+    
+    // 监听键盘的通知
+    [IWNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [IWNotificationCenter addObserver:self selector:@selector(keyboardWillHinde:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillHinde:(NSNotification *)note
+{
+    // 取出键盘弹出的时间
+    CGFloat duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        self.toolbar.transform = CGAffineTransformIdentity;
+    }];
+}
+
+- (void)keyboardWillShow:(NSNotification *)note
+{
+    // 取出键盘的frame
+    CGRect keyboardF = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // 取出键盘弹出的时间
+    CGFloat duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        self.toolbar.transform = CGAffineTransformMakeTranslation(0, -keyboardF.size.height);
+    }];
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
