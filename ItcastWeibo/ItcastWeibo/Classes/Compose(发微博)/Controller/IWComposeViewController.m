@@ -56,6 +56,7 @@
     IWTextView *textView = [[IWTextView alloc] init];
     textView.font = [UIFont systemFontOfSize: 15];
     textView.frame = self.view.bounds;
+    textView.placeholder = @"分享新鲜事";
     [self.view addSubview:textView];
     self.textView = textView;
     // 监听textView文字改变的通知
