@@ -47,5 +47,7 @@
 #define IWPhotoH 70
 #define IWPhotoMargin 10
 
+#define IWNotificationCenter [NSNotificationCenter defaultCenter] 
+
 
 #endif /*IW_COMMON_N*/
