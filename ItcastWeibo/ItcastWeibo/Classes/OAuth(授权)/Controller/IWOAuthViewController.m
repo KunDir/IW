@@ -72,12 +72,6 @@
     
     // 2.查找code＝在urlStr中的范围
     NSRange range = [urlStr rangeOfString:@"code="];
-    
-    // 3.如果urlStr中包含code＝
-//    if(range.location != NSNotFound)
-//    {
-//        
-//    }
     if(range.length)
     {
         // 找到
@@ -87,6 +81,8 @@
         
         // 5.发送请求Post请求给新浪，通过code换取一个accessToke
         [self accessTokewnWithCode:code];
+        
+        return NO;
         
     }
     
