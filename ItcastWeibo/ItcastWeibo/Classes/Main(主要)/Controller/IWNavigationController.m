@@ -28,23 +28,6 @@
  */
 + (void)setupBarButtonTheme
 {
-//    UIBarButtonItem *item = [UIBarButtonItem appearance];
-//    
-//    if(!iOS7){
-//    // 设置背景
-//        [item setBackButtonBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        [item setBackButtonBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_pushed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-//        [item setBackButtonBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_disable"] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
-//    }
-//    
-//    // 设置文字
-//    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-//    textAttrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
-//    textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
-//    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize: iOS7 ? 14 : 12];
-//    [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-//    [item setTitleTextAttributes:textAttrs forState:UIControlStateHighlighted];
-    
     UIBarButtonItem *item = [UIBarButtonItem appearance];
     
     // 设置背景
@@ -59,6 +42,9 @@
     textAttrs[NSForegroundColorAttributeName] = iOS7 ? [UIColor orangeColor] : [UIColor grayColor];
     textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
     textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
+//    textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+//    textAttrs[NSVerticalGlyphFormAttributeName] = @0;
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateHighlighted];
     
@@ -88,6 +74,9 @@
     textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
     textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
     textAttrs[UITextAttributeFont] = [UIFont boldSystemFontOfSize:18];
+//    textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+//    textAttrs[NSVerticalGlyphFormAttributeName] = @0;
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:18];
     [navBar setTitleTextAttributes:textAttrs];
 }
 
