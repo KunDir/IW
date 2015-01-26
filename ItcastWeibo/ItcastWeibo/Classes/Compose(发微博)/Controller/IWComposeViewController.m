@@ -19,9 +19,10 @@
 #import "MBProgressHUD+MJ.h"
 #import "IWComposeToolbar.h"
 
-@interface IWComposeViewController () <UITextViewDelegate>
+@interface IWComposeViewController () <UITextViewDelegate, IWComposeDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) IWTextView *textView;
 @property (nonatomic, strong) IWComposeToolbar *toolbar;
+@property (nonatomic, weak) UIImageView *imageView;
 @end
 
 @implementation IWComposeViewController
@@ -37,11 +38,24 @@
     
     // 添加toolbar
     [self setupToolbar];
+    
+    // 添加imageView
+    [self setupImageView];
+}
+
+- (void)setupImageView
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.frame = CGRectMake(5, 80, 60, 60);
+    // imageView的父控件
+    [self.textView addSubview:imageView];
+    self.imageView = imageView;
 }
 
 - (void)setupToolbar
 {
     IWComposeToolbar *toolbar = [[IWComposeToolbar alloc] init];
+    toolbar.delegate = self;
     CGFloat toolbarH = 44;
     CGFloat toolbarW = self.view.frame.size.width;
     CGFloat toolbarX = 0;
@@ -169,14 +183,44 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - toolbar的代理
+- (void)composeToolbar:(IWComposeToolbar *)toolbar didClickButton:(IWComposeToolbarButtonType)buttonType
+{
+    switch (buttonType) {
+        case IWComposeToolbarButtonTypeCamera:
+            [self openCamera];
+            break;
+        case IWComposeToolbarButtonTypePicture:
+            [self openPhotoLibrary];
+            break;
+            
+        default:
+            break;
+    }
 }
-*/
+
+- (void)openCamera
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+- (void)openPhotoLibrary
+{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+#pragma mark - 图片选择控制器的代理
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.imageView.image = image;
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
