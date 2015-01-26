@@ -155,6 +155,20 @@
 
 - (void)send
 {
+    if(self.imageView.image)
+    {
+        [self sendWithImage];
+    }
+    else
+    {
+        [self sendWithoutImage];
+    }
+    // 关闭控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)sendWithoutImage
+{
     // AFNetWorking\AFN
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -173,10 +187,37 @@
         // 隐藏提醒框
         [MBProgressHUD showError:@"发送失败"];
     }];
-    
-    // 关闭控制器
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)sendWithImage
+{
+    // AFNetWorking\AFN
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"status"] = self.textView.text;
+    params[@"access_token"] = [IWAccountTool account].access_token;
+    
+    // 3.发送请求
+    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // 在发送请求前调用这个block
+        // 必须在这里说明要上传哪些文件
+        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // 7.隐藏提醒框
+        [MBProgressHUD showSuccess:@"发送成功"];
+        IWLog(@"发送成功");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 隐藏提醒框
+        [MBProgressHUD showError:@"发送失败"];
+        IWLog(@"发送失败--%@", error);
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
