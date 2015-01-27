@@ -18,11 +18,12 @@
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "IWComposeToolbar.h"
+#import "IWComposePhotosView.h"
 
 @interface IWComposeViewController () <UITextViewDelegate, IWComposeDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) IWTextView *textView;
 @property (nonatomic, strong) IWComposeToolbar *toolbar;
-@property (nonatomic, weak) UIImageView *imageView;
+@property (nonatomic, weak) IWComposePhotosView *photosView;
 @end
 
 @implementation IWComposeViewController
@@ -40,16 +41,20 @@
     [self setupToolbar];
     
     // 添加imageView
-    [self setupImageView];
+    [self setupPhotosView];
 }
 
-- (void)setupImageView
+- (void)setupPhotosView
 {
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(5, 80, 60, 60);
+    IWComposePhotosView *photosView = [[IWComposePhotosView alloc] init];
+    CGFloat photosViewH = self.textView.frame.size.height;
+    CGFloat photosViewW = self.textView.frame.size.width;
+    CGFloat photosViewX = 0;
+    CGFloat photosViewY = 80;
+    photosView.frame = CGRectMake(photosViewX, photosViewY, photosViewW, photosViewH);
     // imageView的父控件
-    [self.textView addSubview:imageView];
-    self.imageView = imageView;
+    [self.textView addSubview:photosView];
+    self.photosView = photosView;
 }
 
 - (void)setupToolbar
@@ -155,7 +160,7 @@
 
 - (void)send
 {
-    if(self.imageView.image)
+    if(self.photosView.images.count)
     {
         [self sendWithImage];
     }
@@ -204,9 +209,14 @@
     [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 在发送请求前调用这个block
         // 必须在这里说明要上传哪些文件
-        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
-        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
-        
+//        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+//        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+        NSArray *images = self.photosView.images;
+        for(UIImage *image in images)
+        {
+            NSData *data = UIImageJPEGRepresentation(image, 0.00001);
+            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+        }
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // 7.隐藏提醒框
         [MBProgressHUD showSuccess:@"发送成功"];
@@ -260,7 +270,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    self.imageView.image = image;
+    [self.photosView addImage:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
