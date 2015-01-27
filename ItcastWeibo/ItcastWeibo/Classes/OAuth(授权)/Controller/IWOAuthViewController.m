@@ -8,7 +8,7 @@
 
 #import "IWOAuthViewController.h"
 
-#import "AFNetworking.h"
+#import "IWHttpToll.h"
 
 #import "IWAccount.h"
 
@@ -93,11 +93,7 @@
 // 通过code换取一个accessToken
 - (void)accessTokewnWithCode:(NSString *)code
 {
-    // AFNetWorking\AFN
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"client_id"] = IWAppKey;
     params[@"client_secret"] = IWAppSecret;
@@ -105,21 +101,22 @@
     params[@"code"] = code;
     params[@"redirect_uri"] = IWRedirectURI;
     
-    // 3.发送请求
-    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    // 2.发送请求
+    [IWHttpToll postWithURL:@"https://api.weibo.com/oauth2/access_token" params:params success:^(id json) {
         // 4.先将字典转为模型
-        IWAccount *account = [IWAccount accountWithDict:responseObject];
-        
-        
+        IWAccount *account = [IWAccount accountWithDict:json];
+
+
         // 5.存储accessToken信息
         [IWAccountTool saveAccount:account];
-        
+
         // 6.新特性\去首页
         [IWWeiboTool chooseRootController];
-        
+
         // 7.隐藏提醒框
         [MBProgressHUD hideHUD];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    } failure:^(NSError *error) {
         // 隐藏提醒框
         [MBProgressHUD hideHUD];
     }];

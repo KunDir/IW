@@ -39,6 +39,7 @@
 		BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25B0251A6E4BD800510CC0 /* IWStatus.m */; };
 		BC25B0291A6E4DBA00510CC0 /* IWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25B0281A6E4DBA00510CC0 /* IWUser.m */; };
 		BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC325C8C1A7716970014C595 /* IWComposePhotosView.m */; };
+		BC325C911A7722730014C595 /* IWHttpToll.m in Sources */ = {isa = PBXBuildFile; fileRef = BC325C901A7722730014C595 /* IWHttpToll.m */; };
 		BC32C91D1A7655D000A10696 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90B1A7655D000A10696 /* AFHTTPRequestOperation.m */; };
 		BC32C91E1A7655D000A10696 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90D1A7655D000A10696 /* AFHTTPRequestOperationManager.m */; };
 		BC32C91F1A7655D000A10696 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90F1A7655D000A10696 /* AFHTTPSessionManager.m */; };
@@ -175,6 +176,8 @@
 		BC25B0281A6E4DBA00510CC0 /* IWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWUser.m; sourceTree = "<group>"; };
 		BC325C8B1A7716970014C595 /* IWComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWComposePhotosView.h; sourceTree = "<group>"; };
 		BC325C8C1A7716970014C595 /* IWComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWComposePhotosView.m; sourceTree = "<group>"; };
+		BC325C8F1A7722730014C595 /* IWHttpToll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHttpToll.h; sourceTree = "<group>"; };
+		BC325C901A7722730014C595 /* IWHttpToll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHttpToll.m; sourceTree = "<group>"; };
 		BC32C90A1A7655D000A10696 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		BC32C90B1A7655D000A10696 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		BC32C90C1A7655D000A10696 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -539,6 +542,7 @@
 		BC13D0291A6923D8006DA8EC /* Other(其他) */ = {
 			isa = PBXGroup;
 			children = (
+				BC325C8E1A7722510014C595 /* Tool */,
 				BCF475D61A6D1F0E0007059E /* Lib */,
 				BC6CEAF91A69EE0B00BDAEBB /* Category */,
 				BC13D02A1A6923D8006DA8EC /* AppDelegate.h */,
@@ -602,6 +606,15 @@
 				BC25B0131A6E43BA00510CC0 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		BC325C8E1A7722510014C595 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				BC325C8F1A7722730014C595 /* IWHttpToll.h */,
+				BC325C901A7722730014C595 /* IWHttpToll.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		BC32C9091A7655D000A10696 /* AFNetworking */ = {
@@ -997,6 +1010,7 @@
 				BC25B0221A6E43BA00510CC0 /* UIImageView+WebCache.m in Sources */,
 				BC06ED251A6E01640091B55D /* IWAccountTool.m in Sources */,
 				BCD975081A7504A30004310F /* IWTextView.m in Sources */,
+				BC325C911A7722730014C595 /* IWHttpToll.m in Sources */,
 				BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */,
 				BC5122A61A6F34410006F39A /* MJMethod.m in Sources */,
 				BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */,

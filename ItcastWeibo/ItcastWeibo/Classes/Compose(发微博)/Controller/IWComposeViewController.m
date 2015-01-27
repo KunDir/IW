@@ -13,7 +13,7 @@
 
 #import "IWComposeViewController.h"
 #import "IWTextView.h"
-#import "AFNetworking.h"
+#import "IWHttpToll.h"
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
@@ -21,9 +21,11 @@
 #import "IWComposePhotosView.h"
 
 @interface IWComposeViewController () <UITextViewDelegate, IWComposeDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
 @property (nonatomic, weak) IWTextView *textView;
 @property (nonatomic, strong) IWComposeToolbar *toolbar;
 @property (nonatomic, weak) IWComposePhotosView *photosView;
+
 @end
 
 @implementation IWComposeViewController
@@ -174,21 +176,16 @@
 
 - (void)sendWithoutImage
 {
-    // AFNetWorking\AFN
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"status"] = self.textView.text;
     params[@"access_token"] = [IWAccountTool account].access_token;
     
-    // 3.发送请求
-    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    // 2.发送请求
+    [IWHttpToll postWithURL:@"https://api.weibo.com/2/statuses/update.json" params:params success:^(id json) {
         // 7.隐藏提醒框
         [MBProgressHUD showSuccess:@"发送成功"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         // 隐藏提醒框
         [MBProgressHUD showError:@"发送失败"];
     }];
@@ -196,35 +193,32 @@
 
 - (void)sendWithImage
 {
-    // AFNetWorking\AFN
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"status"] = self.textView.text;
     params[@"access_token"] = [IWAccountTool account].access_token;
+   
+    // 2.封装文件参数
+    NSMutableArray *formDataArray = [NSMutableArray array];
+    NSArray *images = [self.photosView images];
+    for(UIImage *image in images)
+    {
+        IWFormData *formData = [[IWFormData alloc] init];
+        
+        formData.data = UIImageJPEGRepresentation(image, 0.00001);
+        formData.name = @"pic";
+        formData.mineType = @"image/jpeg";
+        formData.filename = @"";
+        [formDataArray addObject:formData];
+    }
     
     // 3.发送请求
-    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        // 在发送请求前调用这个block
-        // 必须在这里说明要上传哪些文件
-//        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
-//        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
-        NSArray *images = self.photosView.images;
-        for(UIImage *image in images)
-        {
-            NSData *data = UIImageJPEGRepresentation(image, 0.00001);
-            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
-        }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [IWHttpToll postWithURL:@"https://upload.api.weibo.com/2/statuses/upload.json" params:params formDataArray:formDataArray success:^(id json) {
         // 7.隐藏提醒框
         [MBProgressHUD showSuccess:@"发送成功"];
-        IWLog(@"发送成功");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         // 隐藏提醒框
         [MBProgressHUD showError:@"发送失败"];
-        IWLog(@"发送失败--%@", error);
     }];
 }
 
