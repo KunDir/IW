@@ -50,6 +50,8 @@
 		BC32C9231A7655D000A10696 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C9181A7655D000A10696 /* AFURLRequestSerialization.m */; };
 		BC32C9241A7655D000A10696 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C91A1A7655D000A10696 /* AFURLResponseSerialization.m */; };
 		BC32C9251A7655D000A10696 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C91C1A7655D000A10696 /* AFURLSessionManager.m */; };
+		BC387F191A77CD7D00D65A15 /* IWUserUnreadCountParam.m in Sources */ = {isa = PBXBuildFile; fileRef = BC387F181A77CD7D00D65A15 /* IWUserUnreadCountParam.m */; };
+		BC387F1C1A77CE1000D65A15 /* IWUserUnreadCountResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC387F1B1A77CE1000D65A15 /* IWUserUnreadCountResult.m */; };
 		BC3FAD501A68F07D0060B965 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC3FAD4F1A68F07D0060B965 /* Images.xcassets */; };
 		BC3FAD5F1A68F07D0060B965 /* ItcastWeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3FAD5E1A68F07D0060B965 /* ItcastWeiboTests.m */; };
 		BC4D14871A6BD93B001A3F83 /* UIBarButtonItem+IW.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4D14861A6BD93B001A3F83 /* UIBarButtonItem+IW.m */; };
@@ -208,6 +210,10 @@
 		BC32C91A1A7655D000A10696 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		BC32C91B1A7655D000A10696 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		BC32C91C1A7655D000A10696 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		BC387F171A77CD7D00D65A15 /* IWUserUnreadCountParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWUserUnreadCountParam.h; sourceTree = "<group>"; };
+		BC387F181A77CD7D00D65A15 /* IWUserUnreadCountParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWUserUnreadCountParam.m; sourceTree = "<group>"; };
+		BC387F1A1A77CE1000D65A15 /* IWUserUnreadCountResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWUserUnreadCountResult.h; sourceTree = "<group>"; };
+		BC387F1B1A77CE1000D65A15 /* IWUserUnreadCountResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWUserUnreadCountResult.m; sourceTree = "<group>"; };
 		BC3FAD3F1A68F07D0060B965 /* ItcastWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItcastWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC3FAD431A68F07D0060B965 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC3FAD4F1A68F07D0060B965 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -427,6 +433,7 @@
 		BC13D0151A6923D8006DA8EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC387F161A77CD3300D65A15 /* UserUnreadCont */,
 				BCD0FCF81A7791CA008C9994 /* HomeStatuses */,
 				BCD0FCFD1A7791CA008C9994 /* UserInfo */,
 				BC25B0241A6E4BD800510CC0 /* IWStatus.h */,
@@ -683,6 +690,17 @@
 				BC32C91C1A7655D000A10696 /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		BC387F161A77CD3300D65A15 /* UserUnreadCont */ = {
+			isa = PBXGroup;
+			children = (
+				BC387F171A77CD7D00D65A15 /* IWUserUnreadCountParam.h */,
+				BC387F181A77CD7D00D65A15 /* IWUserUnreadCountParam.m */,
+				BC387F1A1A77CE1000D65A15 /* IWUserUnreadCountResult.h */,
+				BC387F1B1A77CE1000D65A15 /* IWUserUnreadCountResult.m */,
+			);
+			path = UserUnreadCont;
 			sourceTree = "<group>";
 		};
 		BC3FAD361A68F07D0060B965 = {
@@ -1086,6 +1104,7 @@
 				BC25B0211A6E43BA00510CC0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				BC5122A31A6F34410006F39A /* MJArgument.m in Sources */,
 				BC6CEAFF1A69F75A00BDAEBB /* IWTabBar.m in Sources */,
+				BC387F1C1A77CE1000D65A15 /* IWUserUnreadCountResult.m in Sources */,
 				BC25AF911A6E0F5500510CC0 /* MBProgressHUD+MJ.m in Sources */,
 				BCACA5EE1A74A779002FCA6F /* MJRefreshBaseView.m in Sources */,
 				BC32C9231A7655D000A10696 /* AFURLRequestSerialization.m in Sources */,
@@ -1094,6 +1113,7 @@
 				BC4D14871A6BD93B001A3F83 /* UIBarButtonItem+IW.m in Sources */,
 				BC25B0221A6E43BA00510CC0 /* UIImageView+WebCache.m in Sources */,
 				BC06ED251A6E01640091B55D /* IWAccountTool.m in Sources */,
+				BC387F191A77CD7D00D65A15 /* IWUserUnreadCountParam.m in Sources */,
 				BCD975081A7504A30004310F /* IWTextView.m in Sources */,
 				BC325C911A7722730014C595 /* IWHttpToll.m in Sources */,
 				BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */,

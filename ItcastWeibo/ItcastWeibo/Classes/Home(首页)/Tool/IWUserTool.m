@@ -29,4 +29,22 @@
         }
     }];
 }
+
++ (void)userUnreadCountWithParam:(IWUserUnreadCountParam *)param success:(void (^)(IWUserUnreadCountResult *result))success failure:(void (^)(NSError *error))failure
+{
+    // 1.发送请求
+    [IWHttpToll getWithURL:@"https://rm.api.weibo.com/2/remind/unread_count.json" params:param.keyValues success:^(id json) {
+        if(success)
+        {
+            IWUserUnreadCountResult *result = [IWUserUnreadCountResult objectWithKeyValues:json];
+            success(result);
+        }
+        
+    } failure:^(NSError *error) {
+        if(failure)
+        {
+            failure(error);
+        }
+    }];
+}
 @end

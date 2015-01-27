@@ -108,6 +108,14 @@
     self.footer = footer;
 }
 
+- (void)refresh
+{
+    if([self.tabBarItem.badgeValue intValue] > 0)
+    {
+        [self.header beginRefreshing];
+    }
+}
+
 - (void)dealloc
 {
     [self.header free];
@@ -169,6 +177,9 @@
 
 - (void)loadNewData
 {
+    // 清除提醒数字
+    self.tabBarItem.badgeValue = nil;
+    
     // 1.封装请求参数
     IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
     param.count = @5;
