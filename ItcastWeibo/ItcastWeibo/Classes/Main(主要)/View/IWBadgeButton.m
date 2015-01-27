@@ -28,7 +28,7 @@
     _badgeValue = [badgeValue copy];
     
     // 设置提醒数字
-    if(badgeValue)
+    if(badgeValue && [badgeValue intValue] > 0)
     {
         self.hidden = NO;
         

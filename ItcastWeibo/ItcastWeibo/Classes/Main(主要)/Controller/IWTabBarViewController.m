@@ -18,10 +18,21 @@
 #import "IWNavigationController.h"
 
 #import "IWComposeViewController.h"
+#import "IWAccountTool.h"
+#import "IWAccount.h"
+#import "IWUserTool.h"
 
 @interface IWTabBarViewController () <IWTabBarDelegate>
 
 @property (nonatomic, weak) IWTabBar *custemTabBar;
+
+@property (nonatomic, strong) IWHomeViewController *home;
+
+@property (nonatomic, strong) IWMessageViewController *message;
+
+@property (nonatomic, strong) IWDiscoverViewController *discover;
+
+@property (nonatomic, strong) IWMeViewController *me;
 
 @end
 
@@ -35,6 +46,31 @@
     
     // 初始化所有的子控制器
     [self setupAllChildViewControllers];
+    
+    // 定时检查未读数
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(checkUnreadCount) userInfo:nil repeats:YES];
+}
+
+/**
+ *  定时检查未读数
+ */
+- (void)checkUnreadCount
+{
+    // 1.请求参数
+    IWUserUnreadCountParam *param = [[IWUserUnreadCountParam alloc] init];
+    param.uid = @([IWAccountTool account].uid);
+    
+    // 2.发送请求
+    [IWUserTool userUnreadCountWithParam:param success:^(IWUserUnreadCountResult *result) {
+        // 3.设置badgeValue
+        self.home.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", result.status];
+        
+        self.message.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", result.messageCount];
+        
+        self.me.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", result.follower];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 // 初始化tabbar
@@ -56,6 +92,11 @@
 - (void)tabBar:(IWTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to
 {
     self.selectedIndex = to;
+    
+    if( to == 0 )
+    {
+        [self.home refresh];
+    }
 }
 
 
@@ -80,21 +121,25 @@
     IWHomeViewController *home = [[IWHomeViewController alloc] init];
 //    home.tabBarItem.badgeValue = @"1";
     [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
+    self.home = home;
     
     // 2.message
     IWMessageViewController *message = [[IWMessageViewController alloc] init];
 //    message.tabBarItem.badgeValue = @"20";
     [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
+    self.message = message;
     
     // 3.discover
     IWDiscoverViewController *discover = [[IWDiscoverViewController alloc] init];
 //    discover.tabBarItem.badgeValue = @"333";
     [self setupChildViewController:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
+    self.discover = discover;
     
     // 4.me
     IWMeViewController *me = [[IWMeViewController alloc] init];
 //    me.tabBarItem.badgeValue = @"9999";
     [self setupChildViewController:me title:@"我" imageName:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];
+    self.me = me;
 }
 
 /**

@@ -13,12 +13,13 @@
 
 #import "IWComposeViewController.h"
 #import "IWTextView.h"
-#import "IWHttpToll.h"
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "IWComposeToolbar.h"
 #import "IWComposePhotosView.h"
+#import "IWStatusTool.h"
+#import "IWHttpToll.h"
 
 @interface IWComposeViewController () <UITextViewDelegate, IWComposeDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -177,12 +178,11 @@
 - (void)sendWithoutImage
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"status"] = self.textView.text;
-    params[@"access_token"] = [IWAccountTool account].access_token;
+    IWSendStatusParam *param = [[IWSendStatusParam alloc] init];
+    param.status = self.textView.text;
     
     // 2.发送请求
-    [IWHttpToll postWithURL:@"https://api.weibo.com/2/statuses/update.json" params:params success:^(id json) {
+    [IWStatusTool sendStatusWithParam:param success:^(IWSendStatusResult *result) {
         // 7.隐藏提醒框
         [MBProgressHUD showSuccess:@"发送成功"];
     } failure:^(NSError *error) {

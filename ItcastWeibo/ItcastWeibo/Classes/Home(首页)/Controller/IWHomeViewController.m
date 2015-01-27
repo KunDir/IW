@@ -24,7 +24,7 @@
 #import "IWUser.h"
 #import "MJRefresh.h"
 #import "IWStatusTool.h"
-#import "IWHomeStatusesParam.h"
+#import "IWUserTool.h"
 
 #define NavigationbarArrowDown 0
 #define NavigationBarArrowUp 1
@@ -71,19 +71,17 @@
 - (void)setupUserData
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"uid"] = @([IWAccountTool account].uid);
+    IWUserInfoParam *param = [[IWUserInfoParam alloc] init];
+    param.uid = @([IWAccountTool account].uid);
     
     // 2.发送请求
-    [IWHttpToll getWithURL:@"https://api.weibo.com/2/users/show.json" params:params success:^(id json) {
-        IWUser *user = [IWUser objectWithKeyValues:json];
+    [IWUserTool userInfoWithParam:param success:^(IWUserInfoResult *result) {
         // 设置标题文字
-        [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+        [self.titleButton setTitle:result.name forState:UIControlStateNormal];
         
         // 保持昵称
         IWAccount *account = [IWAccountTool account];
-        account.name = user.name;
+        account.name = result.name;
         [IWAccountTool saveAccount:account];
     } failure:^(NSError *error) {
         
@@ -108,6 +106,14 @@
     footer.scrollView = self.tableView;
     footer.delegate = self;
     self.footer = footer;
+}
+
+- (void)refresh
+{
+    if([self.tabBarItem.badgeValue intValue] > 0)
+    {
+        [self.header beginRefreshing];
+    }
 }
 
 - (void)dealloc
@@ -138,28 +144,22 @@
 {
     // 1.封装请求参数
     IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
-    param.access_token = [IWAccountTool account].access_token;
-    param.count = 5;
+    param.count = @5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = [self.statusesFrames lastObject];
-        param.max_id = [statusFrame.status.idstr longLongValue] - 1;
+        param.max_id = @([statusFrame.status.idstr longLongValue] - 1);
     }
     
     // 2.发送请求
-    [IWStatusTool homeStatusesWithParam:param success:^(id json) {
-        // 取出所有的微博数据（每一条微博都是一个字典）
-        
-        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
-        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
-        
+    [IWStatusTool homeStatusesWithParam:param success:^(IWHomeStatusesResult *result) {
         // 创建Frame模型对象
         NSMutableArray *statusFrameArray = [NSMutableArray array];
-        for(IWStatus *status in statusArray)
+        for(IWStatus *status in result.statuses)
         {
             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
             // 传递微博模型数据
             statusFrame.status = status;
-            
+
             [statusFrameArray addObject:statusFrame];
         }
         // 添加新数据到旧数据的后面
@@ -177,25 +177,22 @@
 
 - (void)loadNewData
 {
+    // 清除提醒数字
+    self.tabBarItem.badgeValue = nil;
+    
     // 1.封装请求参数
     IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
-    param.access_token = [IWAccountTool account].access_token;
-    param.count = 5;
+    param.count = @5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = self.statusesFrames[0];
         // 加载ID比since_id大的微博
-        param.since_id = [statusFrame.status.idstr longLongValue];
+        param.since_id = @([statusFrame.status.idstr longLongValue]);
     }
     // 2.发送请求
-    [IWStatusTool homeStatusesWithParam:param success:^(id json) {
-        // 取出所有的微博数据（每一条微博都是一个字典）
-        
-        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
-        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
-        
+    [IWStatusTool homeStatusesWithParam:param success:^(IWHomeStatusesResult *result) {
         // 创建Frame模型对象
         NSMutableArray *statusFrameArray = [NSMutableArray array];
-        for(IWStatus *status in statusArray)
+        for(IWStatus *status in result.statuses)
         {
             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
             // 传递微博模型数据
@@ -277,20 +274,15 @@
 - (void)setupStatusData
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @10;
+    IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
+    param.access_token = [IWAccountTool account].access_token;
+    param.count = @10;
     
     // 2.发送请求
-    [IWHttpToll getWithURL:@"https://api.weibo.com/2/statuses/home_timeline.json" params:params success:^(id json) {
-        // 取出所有的微博数据（每一条微博都是一个字典）
-        
-        // 将字典数据转为模型数据(里面放的就是IWStatus模型）
-        NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
-        
+    [IWStatusTool homeStatusesWithParam:param success:^(IWHomeStatusesResult *result) {
         // 创建Frame模型对象
         NSMutableArray *statusFrameArray = [NSMutableArray array];
-        for(IWStatus *status in statusArray)
+        for(IWStatus *status in result.statuses)
         {
             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
             // 传递微博模型数据
