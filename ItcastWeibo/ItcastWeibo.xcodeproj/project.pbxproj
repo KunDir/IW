@@ -38,6 +38,7 @@
 		BC25B0231A6E43BA00510CC0 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25B0131A6E43BA00510CC0 /* UIView+WebCacheOperation.m */; };
 		BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25B0251A6E4BD800510CC0 /* IWStatus.m */; };
 		BC25B0291A6E4DBA00510CC0 /* IWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25B0281A6E4DBA00510CC0 /* IWUser.m */; };
+		BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC325C8C1A7716970014C595 /* IWComposePhotosView.m */; };
 		BC32C91D1A7655D000A10696 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90B1A7655D000A10696 /* AFHTTPRequestOperation.m */; };
 		BC32C91E1A7655D000A10696 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90D1A7655D000A10696 /* AFHTTPRequestOperationManager.m */; };
 		BC32C91F1A7655D000A10696 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32C90F1A7655D000A10696 /* AFHTTPSessionManager.m */; };
@@ -172,6 +173,8 @@
 		BC25B0251A6E4BD800510CC0 /* IWStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatus.m; sourceTree = "<group>"; };
 		BC25B0271A6E4DBA00510CC0 /* IWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWUser.h; sourceTree = "<group>"; };
 		BC25B0281A6E4DBA00510CC0 /* IWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWUser.m; sourceTree = "<group>"; };
+		BC325C8B1A7716970014C595 /* IWComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWComposePhotosView.h; sourceTree = "<group>"; };
+		BC325C8C1A7716970014C595 /* IWComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWComposePhotosView.m; sourceTree = "<group>"; };
 		BC32C90A1A7655D000A10696 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		BC32C90B1A7655D000A10696 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		BC32C90C1A7655D000A10696 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 				BCD975071A7504A30004310F /* IWTextView.m */,
 				BCD975091A753B990004310F /* IWComposeToolbar.h */,
 				BCD9750A1A753B990004310F /* IWComposeToolbar.m */,
+				BC325C8B1A7716970014C595 /* IWComposePhotosView.h */,
+				BC325C8C1A7716970014C595 /* IWComposePhotosView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -992,6 +997,7 @@
 				BC25B0221A6E43BA00510CC0 /* UIImageView+WebCache.m in Sources */,
 				BC06ED251A6E01640091B55D /* IWAccountTool.m in Sources */,
 				BCD975081A7504A30004310F /* IWTextView.m in Sources */,
+				BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */,
 				BC5122A61A6F34410006F39A /* MJMethod.m in Sources */,
 				BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */,
 				BCAB4DB01A72892400876FF8 /* IWRetweetStatusView.m in Sources */,
