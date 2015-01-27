@@ -17,6 +17,8 @@
 		BC13D0311A6923D8006DA8EC /* IWMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13D0261A6923D8006DA8EC /* IWMessageViewController.m */; };
 		BC13D0321A6923D8006DA8EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13D02B1A6923D8006DA8EC /* AppDelegate.m */; };
 		BC13D0331A6923D8006DA8EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13D02C1A6923D8006DA8EC /* main.m */; };
+		BC22C4FA1A77719200CCCE80 /* IWStatusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC22C4F91A77719200CCCE80 /* IWStatusTool.m */; };
+		BC22C4FD1A7776FC00CCCE80 /* IWHomeStatusesParam.m in Sources */ = {isa = PBXBuildFile; fileRef = BC22C4FC1A7776FC00CCCE80 /* IWHomeStatusesParam.m */; };
 		BC25AF911A6E0F5500510CC0 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25AF8D1A6E0F5500510CC0 /* MBProgressHUD+MJ.m */; };
 		BC25AF921A6E0F5500510CC0 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC25AF8E1A6E0F5500510CC0 /* MBProgressHUD.bundle */; };
 		BC25AF931A6E0F5500510CC0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25AF901A6E0F5500510CC0 /* MBProgressHUD.m */; };
@@ -132,6 +134,10 @@
 		BC13D02B1A6923D8006DA8EC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BC13D02C1A6923D8006DA8EC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC13D0341A692674006DA8EC /* ItcastWeibo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ItcastWeibo-Prefix.pch"; sourceTree = "<group>"; };
+		BC22C4F81A77719200CCCE80 /* IWStatusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusTool.h; sourceTree = "<group>"; };
+		BC22C4F91A77719200CCCE80 /* IWStatusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusTool.m; sourceTree = "<group>"; };
+		BC22C4FB1A7776FC00CCCE80 /* IWHomeStatusesParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeStatusesParam.h; sourceTree = "<group>"; };
+		BC22C4FC1A7776FC00CCCE80 /* IWHomeStatusesParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHomeStatusesParam.m; sourceTree = "<group>"; };
 		BC25AF8C1A6E0F5500510CC0 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		BC25AF8D1A6E0F5500510CC0 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		BC25AF8E1A6E0F5500510CC0 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -380,6 +386,7 @@
 		BC13D0111A6923D8006DA8EC /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				BC22C4F71A77696300CCCE80 /* Tool */,
 				BC13D0121A6923D8006DA8EC /* Controller */,
 				BC13D0151A6923D8006DA8EC /* Model */,
 				BC13D0161A6923D8006DA8EC /* View */,
@@ -407,6 +414,8 @@
 				BC5094501A6F9BDD005D2BA2 /* IWStatusFrame.m */,
 				BCBB8BAA1A7359C100A2CE9A /* IWPhoto.h */,
 				BCBB8BAB1A7359C100A2CE9A /* IWPhoto.m */,
+				BC22C4FB1A7776FC00CCCE80 /* IWHomeStatusesParam.h */,
+				BC22C4FC1A7776FC00CCCE80 /* IWHomeStatusesParam.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,6 +563,15 @@
 				BCACA5F81A74CA91002FCA6F /* IWCommon.h */,
 			);
 			path = "Other(其他)";
+			sourceTree = "<group>";
+		};
+		BC22C4F71A77696300CCCE80 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				BC22C4F81A77719200CCCE80 /* IWStatusTool.h */,
+				BC22C4F91A77719200CCCE80 /* IWStatusTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		BC25AF8B1A6E0F5500510CC0 /* MBProgressHUD */ = {
@@ -1014,6 +1032,7 @@
 				BC325C8D1A7716970014C595 /* IWComposePhotosView.m in Sources */,
 				BC5122A61A6F34410006F39A /* MJMethod.m in Sources */,
 				BC25B0261A6E4BD800510CC0 /* IWStatus.m in Sources */,
+				BC22C4FD1A7776FC00CCCE80 /* IWHomeStatusesParam.m in Sources */,
 				BCAB4DB01A72892400876FF8 /* IWRetweetStatusView.m in Sources */,
 				BC25B01D1A6E43BA00510CC0 /* UIButton+WebCache.m in Sources */,
 				BC13D0311A6923D8006DA8EC /* IWMessageViewController.m in Sources */,
@@ -1070,6 +1089,7 @@
 				BC32C91E1A7655D000A10696 /* AFHTTPRequestOperationManager.m in Sources */,
 				BC13D0331A6923D8006DA8EC /* main.m in Sources */,
 				BC25B0201A6E43BA00510CC0 /* UIImage+WebP.m in Sources */,
+				BC22C4FA1A77719200CCCE80 /* IWStatusTool.m in Sources */,
 				BC13D02E1A6923D8006DA8EC /* IWHomeViewController.m in Sources */,
 				BC06ED1E1A6DE9B30091B55D /* IWAccount.m in Sources */,
 				BC5239891A6CAFF90057A97C /* IWNewfeatureContrller.m in Sources */,
