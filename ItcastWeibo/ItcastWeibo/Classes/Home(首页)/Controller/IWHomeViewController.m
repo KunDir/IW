@@ -23,6 +23,8 @@
 #import "IWStatusCell.h"
 #import "IWUser.h"
 #import "MJRefresh.h"
+#import "IWStatusTool.h"
+#import "IWHomeStatusesParam.h"
 
 #define NavigationbarArrowDown 0
 #define NavigationBarArrowUp 1
@@ -135,18 +137,16 @@
 - (void)loadMoreData
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @10;
+    IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
+    param.access_token = [IWAccountTool account].access_token;
+    param.count = 5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = [self.statusesFrames lastObject];
-        // 加载ID比max_id大的微博
-        long long maxId = [statusFrame.status.idstr longLongValue] - 1;
-        params[@"max_id"] = @(maxId);
+        param.max_id = [statusFrame.status.idstr longLongValue] - 1;
     }
     
     // 2.发送请求
-    [IWHttpToll getWithURL:@"https://api.weibo.com/2/statuses/home_timeline.json" params:params success:^(id json) {
+    [IWStatusTool homeStatusesWithParam:param success:^(id json) {
         // 取出所有的微博数据（每一条微博都是一个字典）
         
         // 将字典数据转为模型数据(里面放的就是IWStatus模型）
@@ -178,17 +178,16 @@
 - (void)loadNewData
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @5;
+    IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
+    param.access_token = [IWAccountTool account].access_token;
+    param.count = 5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = self.statusesFrames[0];
         // 加载ID比since_id大的微博
-        params[@"since_id"] = statusFrame.status.idstr;
+        param.since_id = [statusFrame.status.idstr longLongValue];
     }
-    
     // 2.发送请求
-    [IWHttpToll getWithURL:@"https://api.weibo.com/2/statuses/home_timeline.json" params:params success:^(id json) {
+    [IWStatusTool homeStatusesWithParam:param success:^(id json) {
         // 取出所有的微博数据（每一条微博都是一个字典）
         
         // 将字典数据转为模型数据(里面放的就是IWStatus模型）
@@ -262,14 +261,6 @@
     [UIView animateWithDuration:0.7 animations:^{
         btn.transform = CGAffineTransformMakeTranslation(0, btnH + 1);
     } completion:^(BOOL finished) { // 向下移动的动画执行完毕后
-//        [UIView animateKeyframesWithDuration:0.7 delay:1.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
-//            // 执行向上移动的动画（清空transform）
-//            btn.transform = CGAffineTransformIdentity;
-//            
-//        } completion:^(BOOL finished) {
-//            // 将btn从内存中移除
-//            [btn removeFromSuperview];
-//        }];
         
         // 这段代码 ios6也能运行
         [UIView animateWithDuration:0.7 delay:1.0 options:UIViewAnimationOptionCurveLinear animations:^{
