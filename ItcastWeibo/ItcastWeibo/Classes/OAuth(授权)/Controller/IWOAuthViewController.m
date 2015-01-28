@@ -116,6 +116,10 @@
         // 7.隐藏提醒框
         [MBProgressHUD hideHUD];
         
+        // 询问用户是否同意软件修改图标显示的数字
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        
     } failure:^(NSError *error) {
         // 隐藏提醒框
         [MBProgressHUD hideHUD];

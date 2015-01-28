@@ -36,6 +36,7 @@
     {
         // Show statusBar
         [UIApplication sharedApplication].statusBarHidden = NO;
+        
         [UIApplication sharedApplication].keyWindow.rootViewController = [[IWTabBarViewController alloc] init];
     }
 }

@@ -48,7 +48,10 @@
     [self setupAllChildViewControllers];
     
     // 定时检查未读数
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(checkUnreadCount) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(checkUnreadCount) userInfo:nil repeats:YES];
+    // 把计时器放在子线程
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
 }
 
 /**
@@ -68,6 +71,11 @@
         self.message.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", result.messageCount];
         
         self.me.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", result.follower];
+        
+        // 设置图标右上角的数字(之前必须得获得用户的同意才能修改图标右上角的数字）
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = result.count;
     } failure:^(NSError *error) {
         
     }];
