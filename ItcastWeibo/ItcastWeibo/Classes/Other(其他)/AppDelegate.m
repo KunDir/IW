@@ -51,4 +51,20 @@
     [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
+// app进入后台会调用这个方法
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // 在后台开启任务让程序将持续保持运行状态（能保持运行的时间是不确定）
+    [application beginBackgroundTaskWithExpirationHandler:^{
+        
+    }];
+    
+    // 定时提醒 （定时弹框）
+//    [UILocalNotification]
+}
+
+/** 让程序保持后台运行
+*   1.尽量申请
+*
+*/
 @end
