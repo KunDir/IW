@@ -144,7 +144,7 @@
 {
     // 1.封装请求参数
     IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
-    param.count = @5;
+//    param.count = @5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = [self.statusesFrames lastObject];
         param.max_id = @([statusFrame.status.idstr longLongValue] - 1);
@@ -182,7 +182,7 @@
     
     // 1.封装请求参数
     IWHomeStatusesParam *param = [[IWHomeStatusesParam alloc] init];
-    param.count = @5;
+//    param.count = @5;
     if(self.statusesFrames.count){
         IWStatusFrame *statusFrame = self.statusesFrames[0];
         // 加载ID比since_id大的微博

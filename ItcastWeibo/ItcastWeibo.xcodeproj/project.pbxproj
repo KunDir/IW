@@ -82,6 +82,13 @@
 		BC8F73221A73A4510000D663 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F73181A73A4510000D663 /* MJPhotoToolbar.m */; };
 		BC8F73231A73A4510000D663 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F731A1A73A4510000D663 /* MJPhotoView.m */; };
 		BC8F73241A73A4510000D663 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F731C1A73A4510000D663 /* SDWebImageManager+MJ.m */; };
+		BC99AFB51A79E3AC00B9AFA7 /* IWStatusCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFB41A79E3AC00B9AFA7 /* IWStatusCacheTool.m */; };
+		BC99AFC21A79E3F700B9AFA7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFB81A79E3F700B9AFA7 /* FMDatabase.m */; };
+		BC99AFC31A79E3F700B9AFA7 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFBA1A79E3F700B9AFA7 /* FMDatabaseAdditions.m */; };
+		BC99AFC41A79E3F700B9AFA7 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFBC1A79E3F700B9AFA7 /* FMDatabasePool.m */; };
+		BC99AFC51A79E3F700B9AFA7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFBE1A79E3F700B9AFA7 /* FMDatabaseQueue.m */; };
+		BC99AFC61A79E3F700B9AFA7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC99AFC11A79E3F700B9AFA7 /* FMResultSet.m */; };
+		BC99AFC81A7A034300B9AFA7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC99AFC71A7A034300B9AFA7 /* libsqlite3.dylib */; };
 		BCA3F0451A6C0BCA00D8E5A1 /* IWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */; };
 		BCAB4DB01A72892400876FF8 /* IWRetweetStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB4DAF1A72892400876FF8 /* IWRetweetStatusView.m */; };
 		BCAB4DB31A728F2500876FF8 /* IWStatusTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAB4DB21A728F2500876FF8 /* IWStatusTopView.m */; };
@@ -276,6 +283,20 @@
 		BC8F731A1A73A4510000D663 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
 		BC8F731B1A73A4510000D663 /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
 		BC8F731C1A73A4510000D663 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
+		BC99AFB31A79E3AC00B9AFA7 /* IWStatusCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWStatusCacheTool.h; sourceTree = "<group>"; };
+		BC99AFB41A79E3AC00B9AFA7 /* IWStatusCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWStatusCacheTool.m; sourceTree = "<group>"; };
+		BC99AFB71A79E3F700B9AFA7 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		BC99AFB81A79E3F700B9AFA7 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		BC99AFB91A79E3F700B9AFA7 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		BC99AFBA1A79E3F700B9AFA7 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		BC99AFBB1A79E3F700B9AFA7 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		BC99AFBC1A79E3F700B9AFA7 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		BC99AFBD1A79E3F700B9AFA7 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		BC99AFBE1A79E3F700B9AFA7 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		BC99AFBF1A79E3F700B9AFA7 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		BC99AFC01A79E3F700B9AFA7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		BC99AFC11A79E3F700B9AFA7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		BC99AFC71A7A034300B9AFA7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BCA3F0431A6C0BCA00D8E5A1 /* IWSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWSearchBar.h; sourceTree = "<group>"; };
 		BCA3F0441A6C0BCA00D8E5A1 /* IWSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWSearchBar.m; sourceTree = "<group>"; };
 		BCAB4DAE1A72892400876FF8 /* IWRetweetStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWRetweetStatusView.h; sourceTree = "<group>"; };
@@ -337,6 +358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC99AFC81A7A034300B9AFA7 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +623,8 @@
 				BC22C4F91A77719200CCCE80 /* IWStatusTool.m */,
 				BCD0FCEF1A7790A0008C9994 /* IWUserTool.h */,
 				BCD0FCF01A7790A0008C9994 /* IWUserTool.m */,
+				BC99AFB31A79E3AC00B9AFA7 /* IWStatusCacheTool.h */,
+				BC99AFB41A79E3AC00B9AFA7 /* IWStatusCacheTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -706,6 +730,7 @@
 		BC3FAD361A68F07D0060B965 = {
 			isa = PBXGroup;
 			children = (
+				BC99AFC71A7A034300B9AFA7 /* libsqlite3.dylib */,
 				BC3FAD411A68F07D0060B965 /* ItcastWeibo */,
 				BC3FAD5B1A68F07D0060B965 /* ItcastWeiboTests */,
 				BC3FAD401A68F07D0060B965 /* Products */,
@@ -855,6 +880,24 @@
 			path = MJPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		BC99AFB61A79E3F700B9AFA7 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				BC99AFB71A79E3F700B9AFA7 /* FMDatabase.h */,
+				BC99AFB81A79E3F700B9AFA7 /* FMDatabase.m */,
+				BC99AFB91A79E3F700B9AFA7 /* FMDatabaseAdditions.h */,
+				BC99AFBA1A79E3F700B9AFA7 /* FMDatabaseAdditions.m */,
+				BC99AFBB1A79E3F700B9AFA7 /* FMDatabasePool.h */,
+				BC99AFBC1A79E3F700B9AFA7 /* FMDatabasePool.m */,
+				BC99AFBD1A79E3F700B9AFA7 /* FMDatabaseQueue.h */,
+				BC99AFBE1A79E3F700B9AFA7 /* FMDatabaseQueue.m */,
+				BC99AFBF1A79E3F700B9AFA7 /* FMDB.h */,
+				BC99AFC01A79E3F700B9AFA7 /* FMResultSet.h */,
+				BC99AFC11A79E3F700B9AFA7 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		BCACA5E21A74A779002FCA6F /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -985,6 +1028,7 @@
 		BCF475D61A6D1F0E0007059E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				BC99AFB61A79E3F700B9AFA7 /* fmdb */,
 				BC32C9091A7655D000A10696 /* AFNetworking */,
 				BCACA5E21A74A779002FCA6F /* MJRefresh */,
 				BC8F730D1A73A4510000D663 /* MJPhotoBrowser */,
@@ -1135,6 +1179,7 @@
 				BC25B01E1A6E43BA00510CC0 /* UIImage+GIF.m in Sources */,
 				BC25B01C1A6E43BA00510CC0 /* SDWebImagePrefetcher.m in Sources */,
 				BC8F730C1A7394A70000D663 /* IWPhotoView.m in Sources */,
+				BC99AFB51A79E3AC00B9AFA7 /* IWStatusCacheTool.m in Sources */,
 				BC8F73091A7392630000D663 /* IWPhotosView.m in Sources */,
 				BC13D0321A6923D8006DA8EC /* AppDelegate.m in Sources */,
 				BCD0FD151A779D24008C9994 /* IWSendStatusResult.m in Sources */,
@@ -1143,9 +1188,11 @@
 				BC6236491A6CDAE40025643F /* IWPageControl.m in Sources */,
 				BC8F73241A73A4510000D663 /* SDWebImageManager+MJ.m in Sources */,
 				BC25B0171A6E43BA00510CC0 /* SDWebImageCompat.m in Sources */,
+				BC99AFC21A79E3F700B9AFA7 /* FMDatabase.m in Sources */,
 				BC25B0191A6E43BA00510CC0 /* SDWebImageDownloader.m in Sources */,
 				BC25B01A1A6E43BA00510CC0 /* SDWebImageDownloaderOperation.m in Sources */,
 				BCD0FD191A77A141008C9994 /* IWBaseParam.m in Sources */,
+				BC99AFC41A79E3F700B9AFA7 /* FMDatabasePool.m in Sources */,
 				BC25B0181A6E43BA00510CC0 /* SDWebImageDecoder.m in Sources */,
 				BC25B01B1A6E43BA00510CC0 /* SDWebImageManager.m in Sources */,
 				BC56CC6A1A6F7F5C00FD10DB /* IWStatusCell.m in Sources */,
@@ -1158,12 +1205,14 @@
 				BC13D02F1A6923D8006DA8EC /* IWTabBarViewController.m in Sources */,
 				BC7425B31A6B5CAD00926C29 /* IWNavigationController.m in Sources */,
 				BC25AF931A6E0F5500510CC0 /* MBProgressHUD.m in Sources */,
+				BC99AFC31A79E3F700B9AFA7 /* FMDatabaseAdditions.m in Sources */,
 				BC13D02D1A6923D8006DA8EC /* IWDiscoverViewController.m in Sources */,
 				BCD0FD0F1A779CBF008C9994 /* IWSendStatusParam.m in Sources */,
 				BC32C91D1A7655D000A10696 /* AFHTTPRequestOperation.m in Sources */,
 				BC32C9221A7655D000A10696 /* AFURLConnectionOperation.m in Sources */,
 				BC25B0231A6E43BA00510CC0 /* UIView+WebCacheOperation.m in Sources */,
 				BC5122A81A6F34410006F39A /* MJTypeEncoding.m in Sources */,
+				BC99AFC61A79E3F700B9AFA7 /* FMResultSet.m in Sources */,
 				BC5122A51A6F34410006F39A /* MJMember.m in Sources */,
 				BC8F73221A73A4510000D663 /* MJPhotoToolbar.m in Sources */,
 				BCBA570F1A6AB81800F8957A /* IWBadgeButton.m in Sources */,
@@ -1180,6 +1229,7 @@
 				BC25B0151A6E43BA00510CC0 /* NSData+ImageContentType.m in Sources */,
 				BC32C91E1A7655D000A10696 /* AFHTTPRequestOperationManager.m in Sources */,
 				BC13D0331A6923D8006DA8EC /* main.m in Sources */,
+				BC99AFC51A79E3F700B9AFA7 /* FMDatabaseQueue.m in Sources */,
 				BC25B0201A6E43BA00510CC0 /* UIImage+WebP.m in Sources */,
 				BC22C4FA1A77719200CCCE80 /* IWStatusTool.m in Sources */,
 				BC13D02E1A6923D8006DA8EC /* IWHomeViewController.m in Sources */,
