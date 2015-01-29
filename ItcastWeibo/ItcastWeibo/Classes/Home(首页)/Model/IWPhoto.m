@@ -7,7 +7,8 @@
 //
 
 #import "IWPhoto.h"
+#import "MJExtension.h"
 
 @implementation IWPhoto
-
+MJCodingImplementation
 @end

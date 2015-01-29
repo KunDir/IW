@@ -10,6 +10,7 @@
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 #import "FMDB.h"
+#import "IWStatus.h"
 
 @implementation IWStatusCacheTool
 
@@ -29,34 +30,37 @@ static FMDatabaseQueue *_queue;
     
     // 2.创建表
     [_queue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"create table if not exists t_status (id integer primary key autoincrement, access_token text, idstr text, dict blob);"];
+        [db executeUpdate:@"create table if not exists t_status (id integer primary key autoincrement, access_token text, idstr text, status blob);"];
     }];
 }
 
-+ (void)addStatus:(NSDictionary *)dict
++ (void)addStatus:(IWStatus *)status
 {
     [_queue inDatabase:^(FMDatabase *db) {
+        // 获得需要存储的数据
         NSString *accessToken = [IWAccountTool account].access_token;
-        NSString *idstr = dict[@"idstr"];
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict];
-        [db executeUpdate:@"insert into t_status (access_token, idstr, dict) values(?, ?, ?);", accessToken, idstr, data];
+        NSString *idstr = status.idstr;
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:status];
+        
+        // 存储数据
+        [db executeUpdate:@"insert into t_status (access_token, idstr, status) values(?, ?, ?);", accessToken, idstr, data];
     }];
 }
 
-+ (void)addStatuses:(NSArray *)dictArray
++ (void)addStatuses:(NSArray *)statusArray
 {
-    for(NSDictionary *dict in dictArray)
+    for(IWStatus *status in statusArray)
     {
-        [self addStatus:dict];
+        [self addStatus:status];
     }
 }
 
 + (NSArray *)statusWithParam:(IWHomeStatusesParam *)param
 {
-    __block NSMutableArray *dictArray = nil;
+    __block NSMutableArray *statusArray = nil;
     
     [_queue inDatabase:^(FMDatabase *db) {
-        dictArray = [NSMutableArray array];
+        statusArray = [NSMutableArray array];
         
         NSString *accessToken = [IWAccountTool account].access_token;
         FMResultSet *rs = nil;
@@ -75,13 +79,13 @@ static FMDatabaseQueue *_queue;
         
         
         while (rs.next) {
-            NSData *data = [rs dataForColumn:@"dict"];
-            NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSData *data = [rs dataForColumn:@"status"];
+            IWStatus *status = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             
-            [dictArray addObject:dict];
+            [statusArray addObject:status];
         }
     }];
-    return dictArray;
+    return statusArray;
     
 }
 

@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IWAccessTokenParam.h"
+#import "IWAccessTokenResult.h"
 @class IWAccount;
 
 @interface IWAccountTool : NSObject
 + (void)saveAccount:(IWAccount *)account;
 + (IWAccount *)account;
+
++ (void)accessTokenWithParam:(IWAccessTokenParam *)param success:(void(^)(IWAccessTokenResult *result))success failure:(void(^)(NSError *error))failure;
 @end

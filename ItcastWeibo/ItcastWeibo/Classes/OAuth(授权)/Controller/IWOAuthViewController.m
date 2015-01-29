@@ -8,8 +8,6 @@
 
 #import "IWOAuthViewController.h"
 
-#import "IWHttpToll.h"
-
 #import "IWAccount.h"
 
 #import "IWWeiboTool.h"
@@ -61,6 +59,7 @@
 // webView请求失败的时候就会调用
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"%@", error);
     // 隐藏提醒框
     [MBProgressHUD hideHUD];
 }
@@ -94,25 +93,22 @@
 - (void)accessTokewnWithCode:(NSString *)code
 {
     // 1.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"] = IWAppKey;
-    params[@"client_secret"] = IWAppSecret;
-    params[@"grant_type"] = @"authorization_code";
-    params[@"code"] = code;
-    params[@"redirect_uri"] = IWRedirectURI;
+    IWAccessTokenParam *param = [[IWAccessTokenParam alloc] init];
+    param.client_id = IWAppKey;
+    param.client_secret = IWAppSecret;
+    param.grant_type = @"authorization_code";
+    param.code= code;
+    param.redirect_uri= IWRedirectURI;
     
     // 2.发送请求
-    [IWHttpToll postWithURL:@"https://api.weibo.com/oauth2/access_token" params:params success:^(id json) {
-        // 4.先将字典转为模型
-        IWAccount *account = [IWAccount accountWithDict:json];
-
-
+    [IWAccountTool accessTokenWithParam:param success:^(IWAccessTokenResult *result) {
+        
         // 5.存储accessToken信息
-        [IWAccountTool saveAccount:account];
-
+        [IWAccountTool saveAccount:result];
+        
         // 6.新特性\去首页
         [IWWeiboTool chooseRootController];
-
+        
         // 7.隐藏提醒框
         [MBProgressHUD hideHUD];
         
@@ -122,6 +118,8 @@
         
     } failure:^(NSError *error) {
         // 隐藏提醒框
+        NSLog(@"%@", error);
+        
         [MBProgressHUD hideHUD];
     }];
 }

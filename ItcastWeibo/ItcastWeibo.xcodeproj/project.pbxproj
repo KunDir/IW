@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0203861A7A2AF900EBFA3F /* IWAccessTokenParam.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0203851A7A2AF900EBFA3F /* IWAccessTokenParam.m */; };
+		BC0203891A7A2B0F00EBFA3F /* IWAccessTokenResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0203881A7A2B0F00EBFA3F /* IWAccessTokenResult.m */; };
 		BC06ED1E1A6DE9B30091B55D /* IWAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06ED1D1A6DE9B30091B55D /* IWAccount.m */; };
 		BC06ED211A6DFD350091B55D /* IWWeiboTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06ED201A6DFD350091B55D /* IWWeiboTool.m */; };
 		BC06ED251A6E01640091B55D /* IWAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06ED241A6E01640091B55D /* IWAccountTool.m */; };
@@ -130,6 +132,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC0203841A7A2AF900EBFA3F /* IWAccessTokenParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWAccessTokenParam.h; sourceTree = "<group>"; };
+		BC0203851A7A2AF900EBFA3F /* IWAccessTokenParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAccessTokenParam.m; sourceTree = "<group>"; };
+		BC0203871A7A2B0F00EBFA3F /* IWAccessTokenResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWAccessTokenResult.h; sourceTree = "<group>"; };
+		BC0203881A7A2B0F00EBFA3F /* IWAccessTokenResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAccessTokenResult.m; sourceTree = "<group>"; };
 		BC06ED1C1A6DE9B30091B55D /* IWAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWAccount.h; sourceTree = "<group>"; };
 		BC06ED1D1A6DE9B30091B55D /* IWAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWAccount.m; sourceTree = "<group>"; };
 		BC06ED1F1A6DFD350091B55D /* IWWeiboTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWWeiboTool.h; sourceTree = "<group>"; };
@@ -1014,6 +1020,10 @@
 			children = (
 				BC06ED1C1A6DE9B30091B55D /* IWAccount.h */,
 				BC06ED1D1A6DE9B30091B55D /* IWAccount.m */,
+				BC0203841A7A2AF900EBFA3F /* IWAccessTokenParam.h */,
+				BC0203851A7A2AF900EBFA3F /* IWAccessTokenParam.m */,
+				BC0203871A7A2B0F00EBFA3F /* IWAccessTokenResult.h */,
+				BC0203881A7A2B0F00EBFA3F /* IWAccessTokenResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1202,6 +1212,7 @@
 				BCD0FD081A779217008C9994 /* IWUserInfoParam.m in Sources */,
 				BCACA5F01A74A779002FCA6F /* MJRefreshFooterView.m in Sources */,
 				BC32C9251A7655D000A10696 /* AFURLSessionManager.m in Sources */,
+				BC0203861A7A2AF900EBFA3F /* IWAccessTokenParam.m in Sources */,
 				BC13D02F1A6923D8006DA8EC /* IWTabBarViewController.m in Sources */,
 				BC7425B31A6B5CAD00926C29 /* IWNavigationController.m in Sources */,
 				BC25AF931A6E0F5500510CC0 /* MBProgressHUD.m in Sources */,
@@ -1239,6 +1250,7 @@
 				BC5122A91A6F34410006F39A /* NSObject+MJCoding.m in Sources */,
 				BC5122AA1A6F34410006F39A /* NSObject+MJKeyValue.m in Sources */,
 				BC5239821A6C9FA10057A97C /* IWTitleButton.m in Sources */,
+				BC0203891A7A2B0F00EBFA3F /* IWAccessTokenResult.m in Sources */,
 				BCD0FD0B1A77922D008C9994 /* IWUserInfoResult.m in Sources */,
 				BCD999DE1A713C2C0056C9D7 /* NSDate+IW.m in Sources */,
 				BCAB4DB31A728F2500876FF8 /* IWStatusTopView.m in Sources */,

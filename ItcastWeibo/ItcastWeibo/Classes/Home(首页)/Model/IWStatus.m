@@ -12,6 +12,7 @@
 #import "IWPhoto.h"
 
 #import "MJExtension.h"
+
 @implementation IWStatus
 
 // 实现数组里面装什么
@@ -64,8 +65,19 @@
 
 - (void)setSource:(NSString *)source
 {
-    int startLoc = [source rangeOfString:@">"].location + 1;
-    int length = [source rangeOfString:@"</"].location - startLoc;
-    _source = [NSString stringWithFormat:@"来自%@",[source substringWithRange:NSMakeRange(startLoc, length)]];
+    if([source rangeOfString:@">"].location == NSNotFound)
+    {
+        _source = [source copy];
+    }
+    else
+    {
+        int startLoc = [source rangeOfString:@">"].location + 1;
+        int length = [source rangeOfString:@"</"].location - startLoc;
+        source = [source substringWithRange:NSMakeRange(startLoc, length)];
+            
+        _source = [NSString stringWithFormat:@"来自%@", source];
+    }
 }
+
+MJCodingImplementation
 @end

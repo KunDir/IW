@@ -8,6 +8,8 @@
 
 #import "IWAccountTool.h"
 #import "IWAccount.h"
+#import "IWHttpToll.h"
+#import "MJExtension.h"
 
 #define IWAccountFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"]
 
@@ -40,5 +42,23 @@
         return nil;
     }
 
+}
+
++ (void)accessTokenWithParam:(IWAccessTokenParam *)param success:(void (^)(IWAccessTokenResult *))success failure:(void (^)(NSError *))failure
+{
+    // 1.发送请求
+    [IWHttpToll postWithURL:@"https://api.weibo.com/oauth2/access_token" params:param.keyValues success:^(id json) {
+        if(success)
+        {
+            IWAccessTokenResult *result = [IWAccessTokenResult objectWithKeyValues:json];
+            success(result);
+        }
+        
+    } failure:^(NSError *error) {
+        if(failure)
+        {
+            failure(error);
+        }
+    }];
 }
 @end
